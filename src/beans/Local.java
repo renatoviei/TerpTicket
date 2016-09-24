@@ -3,9 +3,7 @@ package beans;
 public class Local {
 	private String casaDeShow;
 	private String endereco;
-	private String hora;   	//GALERA, USA O JAVA.TIME SE POSSIVEL, PQ ACHO Q ASSIM
-	private String data;	//FICA FEIOSO
-
+	
 	public Local(String casaDeShow, String endereco, String hora, String data){
 		this.casaDeShow = casaDeShow;
 		this.endereco = endereco;

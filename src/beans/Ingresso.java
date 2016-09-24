@@ -1,5 +1,5 @@
 package beans;
-
+import java.util.Random;
 public class Ingresso  {
 	
 	private int codigo;
@@ -46,6 +46,4 @@ public class Ingresso  {
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
-	
-
 }

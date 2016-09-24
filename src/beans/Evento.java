@@ -9,12 +9,16 @@ public class Evento {
 	private Local local;
 	private Banda[] bandas;
 	private Ingresso[] ingressos;
+	private String hora;   	//GALERA, USA O JAVA.TIME SE POSSIVEL, PQ ACHO Q ASSIM
+	private String data;	//FICA FEIOSO
 
-	public Evento(String descriçao, Local local, Banda[] bandas, Ingresso[] ingressos) {
+	public Evento(String descriçao, Local local, Banda[] bandas, Ingresso[] ingressos, String hora, String data) {
 		this.descriçao = descriçao;
 		this.local = local;
 		this.bandas = bandas;
 		this.ingressos = ingressos;
+		this.hora = hora;
+		this.data = data;
 	}
 
 	public String getDescriçao() {
