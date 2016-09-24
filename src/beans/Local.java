@@ -7,8 +7,6 @@ public class Local {
 	public Local(String casaDeShow, String endereco, String hora, String data){
 		this.casaDeShow = casaDeShow;
 		this.endereco = endereco;
-		this.hora = hora;
-		this.data = data;
 	}
 
 	public String getCasaDeShow() {
@@ -25,21 +23,5 @@ public class Local {
 
 	public void setEndereco(String endereco) {
 		this.endereco = endereco;
-	}
-
-	public String getHora() {
-		return hora;
-	}
-
-	public void setHora(String hora) {
-		this.hora = hora;
-	}
-
-	public String getData() {
-		return data;
-	}
-
-	public void setData(String data) {
-		this.data = data;
 	}
 }

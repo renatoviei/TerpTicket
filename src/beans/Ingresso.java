@@ -1,5 +1,5 @@
 package beans;
-import java.util.Random;
+
 public class Ingresso  {
 	
 	private int codigo;
