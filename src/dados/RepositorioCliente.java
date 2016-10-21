@@ -5,8 +5,8 @@ public class RepositorioCliente {
 	private Cliente [] usuarios;
     private int quanUsuarios;
 	
-    public RepositorioCliente() {
-		this.usuarios = new Cliente[100];
+    public RepositorioCliente(int tamanho) {
+		this.usuarios = new Cliente[tamanho];
 		this.quanUsuarios = 0;
 	}
 
@@ -18,17 +18,33 @@ public class RepositorioCliente {
 		return quanUsuarios;
 	}
 	
-	public Cliente buscar(String nome){
-		for (int i = 0; i < usuarios.length; i++) {
+	public int buscarIndiceNome(String nome){
+		int i;
+		for (i = 0; i < usuarios.length; i++) {
 			if(usuarios[i].getNome().equals(nome)){
-				Cliente usuario = usuarios[i];
-				return usuario;
+				break;
+				
+	}else{
+		System.out.println("Cliente não existe");
 	}
-  
+			
 		
   }
-		return null;
+		return i;
+		
 	}
+	
+	public Cliente buscarCliente(String nome){
+		if(nome !=null){
+		Cliente cliente = usuarios[buscarIndiceNome(nome)];
+		return cliente;
+		}else{
+			System.out.println("Cliente não existe");
+		}
+		return null;
+		
+	}
+	
 	public boolean inserir (Cliente usuario){
 		boolean aux = true;
 		    if( usuario != null){
@@ -46,21 +62,18 @@ public class RepositorioCliente {
 
 	public boolean remover(String nome ){
 		boolean aux = true;
-		int i;
-		for (i = 0; i < usuarios.length; i++) {
-			if(this.usuarios[i].getNome().equals(nome))
-				break;
-		}
+		int i = buscarIndiceNome(nome);
+		
 			if (i != this.quanUsuarios){
 				this.usuarios[i] = this.usuarios[this.quanUsuarios - 1];
 				this.usuarios[this.quanUsuarios - 1] = null;
 				this.quanUsuarios--;
+				System.out.println("Cliente removido com sucesso");
 			    }
 			else{
 				aux = false;
+				System.out.println("Cliente não existe");
 	 }
 		return aux;
 	}
-	
-
 }

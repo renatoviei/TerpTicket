@@ -1,13 +1,12 @@
 package dados;
-
 import beans.Evento;
 
 public class RepositorioEventos {
 	private Evento [] eventos;
     private int quanEventos;
 	
-    public RepositorioEventos(){
-		this.eventos = new Evento[100];
+    public RepositorioEventos(int tamanho){
+		this.eventos = new Evento[tamanho];
 		this.quanEventos = 0;
 	}
 
@@ -19,16 +18,31 @@ public class RepositorioEventos {
 		return quanEventos;
 	}
 	
-	public Evento buscar(String desc){
-		for (int i = 0; i < eventos.length; i++) {
-			if(eventos[i].getDescriçao() == desc ){
-				Evento evento = eventos[i];
-				return evento;
+	public int buscarIndiceNome(String nome){
+		int i;
+		for (i = 0; i < eventos.length; i++) {
+			if(eventos[i].getDescriçao().equals(nome)){
+				break;
+				
+	}else{
+		System.out.println("evento não existe");
 	}
-  
+			
 		
   }
+		return i;
+		
+	}
+	
+	public Evento buscarEvento(String nome){
+		if(nome !=null){
+		Evento evento = eventos[buscarIndiceNome(nome)];
+		return evento;
+		}else{
+			System.out.println("Evento não existe");
+		}
 		return null;
+		
 	}
 	public boolean inserir (Evento even){
 		boolean aux = true;
@@ -47,11 +61,7 @@ public class RepositorioEventos {
 
 	public boolean remover(String desc ){
 		boolean aux = true;
-		int i;
-		for (i = 0; i < eventos.length; i++) {
-			if(this.eventos[i].getDescriçao() == desc)
-				break;
-		}
+		int i = buscarIndiceNome(desc);
 			if (i != this.quanEventos){
 				this.eventos[i] = this.eventos[this.quanEventos - 1];
 				this.eventos[this.quanEventos - 1] = null;
@@ -62,8 +72,6 @@ public class RepositorioEventos {
 	 }
 		return aux;
 	}
-	
-
 }
 
 

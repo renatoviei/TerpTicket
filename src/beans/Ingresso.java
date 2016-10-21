@@ -5,14 +5,14 @@ public class Ingresso  {
 	private int codigo;
 	private double preco;
 	private String censura;
-	private String tipo;
+	private String descricao;
 
 	public Ingresso(int codigo, double preco, String censura, String tipo) {
 
 		this.codigo = codigo;
 		this.preco = preco;
 		this.censura = censura;
-		this.tipo = tipo;
+		this.descricao = tipo;
 	}
 
 	public int getCodigo() {
@@ -40,10 +40,10 @@ public class Ingresso  {
 	}
 
 	public String getTipo() {
-		return tipo;
+		return descricao;
 	}
 
 	public void setTipo(String tipo) {
-		this.tipo = tipo;
+		this.descricao = tipo;
 	}
 }

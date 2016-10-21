@@ -1,6 +1,6 @@
 package dados;
-
 import beans.Administrador;
+
 
 public class RepositorioAdministrador {
 	private Administrador[] usuarios;
@@ -19,16 +19,31 @@ public class RepositorioAdministrador {
 		return quanUsuarios;
 	}
 	
-	public Administrador buscar(String nome){
-		for (int i = 0; i < usuarios.length; i++) {
+	public int buscarIndiceNome(String nome){
+		int i;
+		for (i = 0; i < usuarios.length; i++) {
 			if(usuarios[i].getNome().equals(nome)){
-				Administrador usuario = usuarios[i];
-				return usuario;
+				break;
+				
+	}else{
+		System.out.println("Administrador não existe");
 	}
-  
+			
 		
   }
+		return i;
+		
+	}
+	
+	public Administrador buscarAdm(String nome){
+		if(nome !=null){
+		Administrador adm = usuarios[buscarIndiceNome(nome)];
+		return adm;
+		}else{
+			System.out.println("Administrador não existe");
+		}
 		return null;
+		
 	}
 	public boolean inserir (Administrador usuario){
 		boolean aux = true;
@@ -47,11 +62,8 @@ public class RepositorioAdministrador {
 
 	public boolean remover(String nome ){
 		boolean aux = true;
-		int i;
-		for (i = 0; i < usuarios.length; i++) {
-			if(this.usuarios[i].getNome().equals(nome))
-				break;
-		}
+		int i = buscarIndiceNome(nome); 
+		
 			if (i != this.quanUsuarios){
 				this.usuarios[i] = this.usuarios[this.quanUsuarios - 1];
 				this.usuarios[this.quanUsuarios - 1] = null;
