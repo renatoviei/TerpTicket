@@ -1,7 +1,7 @@
 package dados;
 import beans.Evento;
 
-public class RepositorioEventos {
+public class RepositorioEventos implements IRepositorioEventos {
 	private Evento [] eventos;
     private int quanEventos;
 	
@@ -44,7 +44,7 @@ public class RepositorioEventos {
 		return null;
 		
 	}
-	public boolean inserir (Evento even){
+	public boolean cadastrar (Evento even){
 		boolean aux = true;
 		    if( eventos != null){
 			if (this.eventos[quanEventos] == null) {

@@ -1,7 +1,7 @@
 package dados;
 import beans.Cliente;
 
-public class RepositorioCliente {
+public class RepositorioCliente implements IRepositorioCliente{
 	private Cliente [] usuarios;
     private int quanUsuarios;
 	
@@ -45,7 +45,7 @@ public class RepositorioCliente {
 		
 	}
 	
-	public boolean inserir (Cliente usuario){
+	public boolean cadastrar (Cliente usuario){
 		boolean aux = true;
 		    if( usuario != null){
 			if (this.usuarios[quanUsuarios] == null) {

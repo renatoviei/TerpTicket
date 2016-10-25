@@ -2,7 +2,7 @@ package dados;
 import beans.Administrador;
 
 
-public class RepositorioAdministrador {
+public class RepositorioAdministrador implements IRepositorioAdm {
 	private Administrador[] usuarios;
     private int quanUsuarios;
 	
@@ -45,7 +45,7 @@ public class RepositorioAdministrador {
 		return null;
 		
 	}
-	public boolean inserir (Administrador usuario){
+	public boolean cadastrar (Administrador usuario){
 		boolean aux = true;
 		    if( usuario != null){
 			if (this.usuarios[quanUsuarios] == null) {
