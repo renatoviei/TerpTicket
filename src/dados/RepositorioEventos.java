@@ -45,7 +45,7 @@ public class RepositorioEventos implements IRepositorioEventos {
 		
 	}
 	public boolean cadastrar (Evento even){
-		boolean aux = true;
+		boolean resposta = true;
 		    if( eventos != null){
 			if (this.eventos[quanEventos] == null) {
 		     eventos[quanEventos] = even;
@@ -53,14 +53,14 @@ public class RepositorioEventos implements IRepositorioEventos {
 			    
 		}
 			else
-				aux = false;
+				resposta = false;
 				
     }
-		return aux;
+		return resposta;
 	}
 
 	public boolean remover(String desc ){
-		boolean aux = true;
+		boolean resposta = true;
 		int i = buscarIndiceNome(desc);
 			if (i != this.quanEventos){
 				this.eventos[i] = this.eventos[this.quanEventos - 1];
@@ -68,9 +68,21 @@ public class RepositorioEventos implements IRepositorioEventos {
 				this.quanEventos--;
 			    }
 			else{
-				aux = false;
+				resposta = false;
 	 }
-		return aux;
+		return resposta;
+	}
+	
+	public boolean existe(String nome) {
+		boolean existe = false;
+		int i = this.buscarIndiceNome(nome);
+		if (i != quanEventos) {
+			existe = true;
+			System.out.println("Administrador existe!");
+		} else {
+			System.out.println("Administrador não existe!");
+		}
+		return existe;
 	}
 }
 

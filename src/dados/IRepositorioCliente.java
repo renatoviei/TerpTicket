@@ -4,11 +4,11 @@ import beans.Cliente;
 
 public interface IRepositorioCliente {
 	
-	int buscarIndiceNome(String nome);
-	
-	Cliente buscarCliente(String nome);
+	Cliente buscarCliente(String login);
 	
 	boolean cadastrar (Cliente usuario);
 
 	boolean remover(String nome );
+	
+	boolean existe(String nome);
 }

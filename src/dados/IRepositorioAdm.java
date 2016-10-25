@@ -4,12 +4,12 @@ import beans.Administrador;
 
 public interface IRepositorioAdm {
 	
-	int buscarIndiceNome(String nome);
-	
-	Administrador buscarAdm(String nome);
+	Administrador buscarAdm(String login);
 	
 	boolean cadastrar(Administrador usuario);
 
 	boolean remover(String nome );
+	
+	boolean existe(String nome);
 
 }

@@ -5,6 +5,7 @@ import beans.Administrador;
 public class RepositorioAdministrador implements IRepositorioAdm {
 	private Administrador[] usuarios;
     private int quanUsuarios;
+    
 	
     public RepositorioAdministrador() {
 		this.usuarios = new Administrador[100];
@@ -19,10 +20,10 @@ public class RepositorioAdministrador implements IRepositorioAdm {
 		return quanUsuarios;
 	}
 	
-	public int buscarIndiceNome(String nome){
+	public int buscarIndiceLogin(String login){
 		int i;
 		for (i = 0; i < usuarios.length; i++) {
-			if(usuarios[i].getNome().equals(nome)){
+			if(usuarios[i].getLogin().equals(login)){
 				break;
 				
 	}else{
@@ -35,9 +36,9 @@ public class RepositorioAdministrador implements IRepositorioAdm {
 		
 	}
 	
-	public Administrador buscarAdm(String nome){
-		if(nome !=null){
-		Administrador adm = usuarios[buscarIndiceNome(nome)];
+	public Administrador buscarAdm(String login){
+		if(login !=null){
+		Administrador adm = usuarios[buscarIndiceLogin(login)];
 		return adm;
 		}else{
 			System.out.println("Administrador não existe");
@@ -46,7 +47,7 @@ public class RepositorioAdministrador implements IRepositorioAdm {
 		
 	}
 	public boolean cadastrar (Administrador usuario){
-		boolean aux = true;
+		boolean resposta = true;
 		    if( usuario != null){
 			if (this.usuarios[quanUsuarios] == null) {
 		     usuarios[quanUsuarios] = usuario;
@@ -54,15 +55,15 @@ public class RepositorioAdministrador implements IRepositorioAdm {
 			    
 		}
 			else
-				aux = false;
+			  resposta = false;
 				
     }
-		return aux;
+		return resposta;
 	}
 
-	public boolean remover(String nome ){
-		boolean aux = true;
-		int i = buscarIndiceNome(nome); 
+	public boolean remover(String login ){
+		boolean resposta = true;
+		int i = buscarIndiceLogin(login); 
 		
 			if (i != this.quanUsuarios){
 				this.usuarios[i] = this.usuarios[this.quanUsuarios - 1];
@@ -70,9 +71,21 @@ public class RepositorioAdministrador implements IRepositorioAdm {
 				this.quanUsuarios--;
 			    }
 			else{
-				aux = false;
+				resposta = false;
 	 }
-		return aux;
+		return resposta;
+	}
+	
+	public boolean existe(String login) {
+		boolean existe = false;
+		int i = this.buscarIndiceLogin(login);
+		if (i != quanUsuarios) {
+			existe = true;
+			System.out.println("Administrador existe!");
+		} else {
+			System.out.println("Administrador não existe!");
+		}
+		return existe;
 	}
 	
 

@@ -4,9 +4,9 @@ public class Administrador extends Pessoa {
 
 	private Evento evento;
 
-	public Administrador(String nome, String email, long senha, int idade, Evento evento) {
-		super(nome, email, senha, idade);
-		this.evento = evento;
+	public Administrador(String nome, String email, String login, long senha, int idade, Evento evento) {
+		super(nome, email, login, senha, idade);
+		this.evento = evento; 
 
 	}
 
