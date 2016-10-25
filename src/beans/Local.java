@@ -4,6 +4,7 @@ public class Local {
 	private String casaDeShow;
 	private String endereco;
 	
+	
 	public Local(String casaDeShow, String endereco, String hora, String data){
 		this.casaDeShow = casaDeShow;
 		this.endereco = endereco;
@@ -24,4 +25,6 @@ public class Local {
 	public void setEndereco(String endereco) {
 		this.endereco = endereco;
 	}
+
+	
 }

@@ -4,9 +4,10 @@ import beans.Evento;
 public class RepositorioEventos implements IRepositorioEventos {
 	private Evento [] eventos;
     private int quanEventos;
+  
 	
-    public RepositorioEventos(int tamanho){
-		this.eventos = new Evento[tamanho];
+    public RepositorioEventos(){
+		this.eventos = new Evento[100];
 		this.quanEventos = 0;
 	}
 
@@ -18,18 +19,17 @@ public class RepositorioEventos implements IRepositorioEventos {
 		return quanEventos;
 	}
 	
-	public int buscarIndiceNome(String nome){
-		int i;
-		for (i = 0; i < eventos.length; i++) {
-			if(eventos[i].getDescriçao().equals(nome)){
-				break;
-				
-	}else{
-		System.out.println("evento não existe");
-	}
-			
-		
-  }
+	
+	public int buscarIndiceNome(String login){
+		int i = 0;
+		boolean resposta = false;
+		while (resposta != true && i < this.quanEventos) {
+			if (login.equals(this.eventos[i].getNome())) {
+				resposta = true;
+			} else {
+				i = i + 1;
+			}
+		}
 		return i;
 		
 	}
@@ -78,9 +78,9 @@ public class RepositorioEventos implements IRepositorioEventos {
 		int i = this.buscarIndiceNome(nome);
 		if (i != quanEventos) {
 			existe = true;
-			System.out.println("Administrador existe!");
+			System.out.println("Evento existe!");
 		} else {
-			System.out.println("Administrador não existe!");
+			System.out.println("Evento não existe!");
 		}
 		return existe;
 	}

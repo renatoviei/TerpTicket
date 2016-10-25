@@ -5,8 +5,8 @@ public class RepositorioCliente implements IRepositorioCliente{
 	private Cliente [] usuarios;
     private int quanUsuarios;
 	
-    public RepositorioCliente(int tamanho) {
-		this.usuarios = new Cliente[tamanho];
+    public RepositorioCliente() {
+		this.usuarios = new Cliente[100];
 		this.quanUsuarios = 0;
 	}
 
@@ -18,25 +18,23 @@ public class RepositorioCliente implements IRepositorioCliente{
 		return quanUsuarios;
 	}
 	
-	public int buscarIndiceLogin(String login){
-		int i;
-		for (i = 0; i < usuarios.length; i++) {
-			if(usuarios[i].getLogin().equals(login)){
-				break;
-				
-	}else{
-		System.out.println("Cliente não existe");
-	}
-			
-		
-  }
+	public int buscarIndiceCliente(String login){
+		int i = 0;
+		boolean resposta = false;
+		while (resposta != true && i < this.quanUsuarios) {
+			if (login.equals(this.usuarios[i].getLogin())) {
+				resposta = true;
+			} else {
+				i = i + 1;
+			}
+		}
 		return i;
 		
 	}
 	
 	public Cliente buscarCliente(String login){
 		if(login !=null){
-		Cliente cliente = usuarios[buscarIndiceLogin(login)];
+		Cliente cliente = usuarios[buscarIndiceCliente(login)];
 		return cliente;
 		}else{
 			System.out.println("Cliente não existe");
@@ -62,7 +60,7 @@ public class RepositorioCliente implements IRepositorioCliente{
 
 	public boolean remover(String login ){
 		boolean resposta = true;
-		int i = buscarIndiceLogin(login);
+		int i = buscarIndiceCliente(login);
 		
 			if (i != this.quanUsuarios){
 				this.usuarios[i] = this.usuarios[this.quanUsuarios - 1];
@@ -79,12 +77,12 @@ public class RepositorioCliente implements IRepositorioCliente{
 	
 	public boolean existe(String login) {
 		boolean existe = false;
-		int i = this.buscarIndiceLogin(login);
+		int i = this.buscarIndiceCliente(login);
 		if (i != quanUsuarios) {
 			existe = true;
-			System.out.println("Administrador existe!");
+			System.out.println("Cliente existe!");
 		} else {
-			System.out.println("Administrador não existe!");
+			System.out.println("Cliente não existe!");
 		}
 		return existe;
 	}

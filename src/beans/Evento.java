@@ -1,11 +1,13 @@
 package beans;
 
+import java.util.Arrays;
+
 import beans.Banda;
 import beans.Ingresso;
 import beans.Local;
 
 public class Evento {
-	private String descriçao;
+	private String nome;
 	private Local local;
 	private Banda[] bandas;
 	private Ingresso[] ingressos;
@@ -13,7 +15,7 @@ public class Evento {
 	private String data;	//FICA FEIOSO
 
 	public Evento(String descriçao, Local local, Banda[] bandas, Ingresso[] ingressos, String hora, String data) {
-		this.descriçao = descriçao;
+		this.nome = descriçao;
 		this.local = local;
 		this.bandas = bandas;
 		this.ingressos = ingressos;
@@ -37,8 +39,8 @@ public class Evento {
 		this.data = data;
 	}
 
-	public String getDescriçao() {
-		return descriçao;
+	public String getNome() {
+		return nome;
 	}
 
 	public Local getLocal() {
@@ -53,8 +55,8 @@ public class Evento {
 		return ingressos;
 	}
 
-	public void setDescriçao(String descriçao) {
-		this.descriçao = descriçao;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 	public void setLocal(Local local) {
@@ -67,6 +69,14 @@ public class Evento {
 
 	public void setIngressos(Ingresso[] ingressos) {
 		this.ingressos = ingressos;
+		
+		
+	}
+
+	@Override
+	public String toString() {
+		return "Evento [nome=" + nome + ", local=" + local + ", bandas=" + Arrays.toString(bandas) + ", ingressos="
+				+ Arrays.toString(ingressos) + ", hora=" + hora + ", data=" + data + "]";
 	}
 
 }

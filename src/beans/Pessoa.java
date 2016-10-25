@@ -4,10 +4,10 @@ public class Pessoa {
 	private String nome;
 	private String email;
 	private String login;
-	private long senha;
+	private String senha;
 	private int idade;
 
-	public Pessoa(String nome, String email, String login, long senha, int idade) {
+	public Pessoa(String nome, String email, String login, String senha, int idade) {
 		this.nome = nome;
 		this.email = email;
 		this.login = login;
@@ -42,11 +42,11 @@ public class Pessoa {
 		this.login = login;
 	}
 
-	public long getSenha() {
+	public String getSenha() {
 		return senha;
 	}
 
-	public void setSenha(long senha) {
+	public void setSenha(String senha) {
 		this.senha = senha;
 	}
 
@@ -57,5 +57,7 @@ public class Pessoa {
 	public void setIdade(int idade) {
 		this.idade = idade;
 	}
+
+	
 
 }

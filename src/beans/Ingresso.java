@@ -45,5 +45,9 @@ public class Ingresso  {
 
 	public void setTipo(String tipo) {
 		this.descricao = tipo;
+		
+		
 	}
+
+
 }
