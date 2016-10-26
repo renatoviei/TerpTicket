@@ -2,7 +2,11 @@ package GUI;
 import java.util.Scanner;
 
 import beans.Administrador;
+import beans.Banda;
 import beans.Cliente;
+import beans.Evento;
+import beans.Ingresso;
+import beans.Local;
 import dados.Fachada;
 
 public class Teste {
@@ -111,14 +115,54 @@ public class Teste {
 					    	c = sc.next().charAt(0);
 							
 					    	switch(c){
-							case 1:
+							case '1':
+										System.out.println("Digite a descrição do evento: ");
+										String descricao = sc2.nextLine();
+										
+										System.out.println("Digite o local do evento e o endereço respectivamente: ");
+										Local local = new Local(sc2.nextLine(), sc2.nextLine());
+										
+										System.out.println("Digite a quantidade de bandas do evento: ");
+										int quantidadeBandas = sc2.nextInt();
+										Banda [] bandas = new Banda[quantidadeBandas];
+										
+										System.out.println("Digite os nomes das bandas e os seus generos respectivamente: ");
+										for(int i = 0; i<quantidadeBandas; i++){
+											bandas[i].setNome(sc2.next());
+											bandas[i].setGenero(sc2.next());
+										}
+										
+										System.out.println("Digite a quantidade de ingressos a ser vendido: ");
+										int quantidadeIngressos = sc2.nextInt();
+										Ingresso [] ingressos = new Ingresso[quantidadeIngressos];
+										
+										System.out.println("Digite o preço, a sensura e a descricao do ingresso: ");
+										double preco = sc2.nextDouble();
+										String censura = sc2.nextLine();
+										String descricaoIngresso = sc2.nextLine();
+										for(int i = 0; i< quantidadeIngressos; i++){
+											ingressos[i].setPreco(preco);
+											ingressos[i].setCensura(censura);
+											ingressos[i].setTipo(descricaoIngresso);
+											ingressos[i].setCodigo(i);
+										}
+										
+										System.out.println("Digite a data e a hora do envento: ");
+										String hora = sc2.next();
+										String data = sc2.nextLine();
+										
+										
+										fachada.cadastarEvento(new Evento(descricao,local,bandas,ingressos,hora,data));
 								   
 							        break;	   
 							case 2:
-						     
-							        break;	   
+										System.out.println("Digite o nome do evento que deseja buscar: ");
+										String nomeEvento = sc2.next();
+										fachada.buscarEvento(nomeEvento);
+								        break;	   
 							case 3:
-							     
+										fachada.removerAdm(login);	
+							     	
 							        break;	
 							default: 
 							        System.out.println("\nOpção invalida!");

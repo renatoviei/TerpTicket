@@ -5,7 +5,7 @@ public class Local {
 	private String endereco;
 	
 	
-	public Local(String casaDeShow, String endereco, String hora, String data){
+	public Local(String casaDeShow, String endereco){
 		this.casaDeShow = casaDeShow;
 		this.endereco = endereco;
 	}
