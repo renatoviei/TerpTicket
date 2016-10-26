@@ -44,4 +44,8 @@ public class ControladorEventos implements IControladorEventos {
 
 	}
 	
+	public boolean existe(String nome){
+		return this.repositorio.existe(nome);
+	}
+	
 }

@@ -39,6 +39,10 @@ public class Fachada implements IFachada {
 	   return controladorEvento.buscarEvento(nome);
    }
    
+   public boolean existe(String nome){
+	   return controladorEvento.existe(nome);
+   }
+   
    public void removerAdm(String login){
 	   controladorAdm.remover(login);
    }
