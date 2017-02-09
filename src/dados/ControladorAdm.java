@@ -18,10 +18,10 @@ public class ControladorAdm implements IControladorAdm {
 		} else {
 			if (this.repositorio.existe(adm.getLogin()) == false) {
 				this.repositorio.cadastrar(adm);
-
+				System.out.println("Administrador criado com sucesso!");
 				resposta = true;
 			} else {
-				System.out.println("ERRO! LOGIN JÁ CADASTRADO! (ADMINISTRADOR)");
+				System.out.println("ERRO! LOGIN JÁ CADASTRADO! ");
 			}
 		}
 		return resposta;
@@ -33,19 +33,20 @@ public class ControladorAdm implements IControladorAdm {
 	
 	public void remover(String login) {
 		
-		sc = new Scanner(System.in);
+		
 		boolean x = false;
 		
 		while (x == false) {
-			
+			sc = new Scanner(System.in);
 			System.out.println("Digite sua senha:");
-			String s = sc.nextLine();
+			String s = sc.next();
 			Administrador aux = buscarAdm(login);
-			System.out.println("ADM REMOVIDO");
 			
-			if (s == aux.getSenha()) {
+			
+			if (s.equals(aux.getSenha())) {
 				this.repositorio.remover(login);
 				x = true;
+				System.out.println("Administrador removido");
 			} else {
 				System.out.println("SENHA ERRADA, DIGITE NOVAMENTE");
 			}
@@ -59,9 +60,9 @@ public class ControladorAdm implements IControladorAdm {
 		
 		if (repositorio.existe(login) && repositorio.buscarAdm(login).getSenha().equals(senha)) {
 			logado = true;
-			System.out.println("LOGIN REALIZADO COM SUCESSO");
+			System.out.println("\nLogin realizado!");
 		} else {
-			System.out.println("LOGIN NÃO REALIZADO");
+			System.out.println("LOGIN NÃO REALIZADO. CONTA NAO EXISTE!");
 		}
 		return logado;
 	}

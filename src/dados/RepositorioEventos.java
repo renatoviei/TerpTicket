@@ -1,4 +1,6 @@
 package dados;
+import java.util.Arrays;
+
 import beans.Evento;
 
 public class RepositorioEventos implements IRepositorioEventos {
@@ -35,13 +37,14 @@ public class RepositorioEventos implements IRepositorioEventos {
 	}
 	
 	public Evento buscarEvento(String nome){
-		if(nome !=null){
-		Evento evento = eventos[buscarIndiceNome(nome)];
-		return evento;
+		Evento evento = null;
+		if(nome != null){
+	    evento = eventos[buscarIndiceNome(nome)];
+		
 		}else{
 			System.out.println("Evento não existe");
 		}
-		return null;
+		return evento;
 		
 	}
 	public boolean cadastrar (Evento even){
@@ -59,9 +62,9 @@ public class RepositorioEventos implements IRepositorioEventos {
 		return resposta;
 	}
 
-	public boolean remover(String desc ){
+	public boolean remover(String nome ){
 		boolean resposta = true;
-		int i = buscarIndiceNome(desc);
+		int i = buscarIndiceNome(nome);
 			if (i != this.quanEventos){
 				this.eventos[i] = this.eventos[this.quanEventos - 1];
 				this.eventos[this.quanEventos - 1] = null;
@@ -78,13 +81,16 @@ public class RepositorioEventos implements IRepositorioEventos {
 		int i = this.buscarIndiceNome(nome);
 		if (i != quanEventos) {
 			existe = true;
-			System.out.println("Evento existe!");
-		} else {
-			System.out.println("Evento não existe!");
-		}
+		} 
+		
 		return existe;
 	}
-}
 
+	@Override
+	public String toString() {
+		return "RepositorioEventos [eventos=" + Arrays.toString(eventos) + "]";
+	}
+	
+}
 
 

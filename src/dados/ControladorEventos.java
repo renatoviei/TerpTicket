@@ -17,10 +17,10 @@ public class ControladorEventos implements IControladorEventos {
 		} else {
 			if (!(this.repositorio.existe(event.getNome()))) {
 				this.repositorio.cadastrar(event);
-
-				resposta = true;
+                resposta = true;
+                System.out.println("Evento cadastrado com sucesso!!");	
 			} else {
-				System.out.println("ERRO! LOGIN JÁ CADASTRADO! (ADMINISTRADOR)");
+				System.out.println("EVENTO JÁ CADASTRADO!");
 			}
 		}
 		return resposta;
@@ -37,6 +37,7 @@ public class ControladorEventos implements IControladorEventos {
 			if (nome != null) {
 				this.repositorio.remover(nome);
 				x = true;
+				System.out.println("Evento removido com sucesso!");
 			} else {
 				System.out.println("PARAMETRO INVALIDO, DIGITE NOVAMENTE");
 			}

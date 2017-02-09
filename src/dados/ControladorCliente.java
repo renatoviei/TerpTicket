@@ -17,10 +17,10 @@ public class ControladorCliente implements IControladorCliente {
 		} else {
 			if (!(this.repositorio.existe(cliente.getLogin()))) {
 				this.repositorio.cadastrar(cliente);
-
+				System.out.println("cliente cadastrado com sucesso! ");
 				resposta = true;
 			} else {
-				System.out.println("ERRO! LOGIN JÁ CADASTRADO! (ADMINISTRADOR)");
+				System.out.println("ERRO! LOGIN JÁ CADASTRADO! ");
 			}
 		}
 		return resposta;
@@ -37,12 +37,12 @@ public class ControladorCliente implements IControladorCliente {
 			System.out.println("Digite sua senha:");
 			String s = sc.nextLine();
 			Cliente aux = buscarCliente(login);
-			if (s == aux.getSenha()) {
+			if (s.equals(aux.getSenha())) {
 				this.repositorio.remover(login);
 				x = true;
-				System.out.println("CLIENTE REMOVIDO");
+				System.out.println("Cliente removido com sucesso!");
 			} else {
-				System.out.println("SENHA ERRADA, DIGITE NOVAMENTE");
+				System.out.println("Senha errada, digite novamente");
 			}
 		}
 
@@ -52,9 +52,9 @@ public class ControladorCliente implements IControladorCliente {
 		boolean logado = false;
 		if (repositorio.existe(login) && repositorio.buscarCliente(login).getSenha().equals(senha)) {
 			logado = true;
-			System.out.println("LOGIN REALIZADO COM SUCESSO");
+			System.out.println("Login realizado com sucesso!");
 		} else {
-			System.out.println("LOGIN NÃO REALIZADO");
+			System.out.println("LOGIN NÃO REALIZADO!");
 		}
 		return logado;
 	}

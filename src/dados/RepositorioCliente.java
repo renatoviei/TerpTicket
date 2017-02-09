@@ -36,8 +36,6 @@ public class RepositorioCliente implements IRepositorioCliente{
 		if(login !=null){
 		Cliente cliente = usuarios[buscarIndiceCliente(login)];
 		return cliente;
-		}else{
-			System.out.println("Cliente não existe");
 		}
 		return null;
 		
@@ -66,12 +64,8 @@ public class RepositorioCliente implements IRepositorioCliente{
 				this.usuarios[i] = this.usuarios[this.quanUsuarios - 1];
 				this.usuarios[this.quanUsuarios - 1] = null;
 				this.quanUsuarios--;
-				System.out.println("Cliente removido com sucesso");
 			    }
-			else{
-				resposta = false;
-				System.out.println("Cliente não existe");
-	 }
+			
 		return resposta;
 	}
 	
@@ -80,10 +74,7 @@ public class RepositorioCliente implements IRepositorioCliente{
 		int i = this.buscarIndiceCliente(login);
 		if (i != quanUsuarios) {
 			existe = true;
-			System.out.println("Cliente existe!");
-		} else {
-			System.out.println("Cliente não existe!");
-		}
+		} 
 		return existe;
 	}
 }

@@ -35,13 +35,14 @@ public class RepositorioAdministrador implements IRepositorioAdm {
 	}
 	
 	public Administrador buscarAdm(String login){
+		Administrador adm = null;
 		if(login !=null){
-		Administrador adm = usuarios[buscarIndiceLogin(login)];
-		return adm;
+		adm = usuarios[buscarIndiceLogin(login)];
+		
 		}else{
 			System.out.println("Administrador não existe");
 		}
-		return null;
+		return adm;
 		
 	}
 	public boolean cadastrar (Administrador usuario){
@@ -67,7 +68,7 @@ public class RepositorioAdministrador implements IRepositorioAdm {
 				this.usuarios[i] = this.usuarios[this.quanUsuarios - 1];
 				this.usuarios[this.quanUsuarios - 1] = null;
 				this.quanUsuarios--;
-				System.out.println("Administrador cadastrado");
+				
 			    }
 			else{
 				resposta = false;
@@ -80,10 +81,8 @@ public class RepositorioAdministrador implements IRepositorioAdm {
 		int i = this.buscarIndiceLogin(login);
 		if (i != quanUsuarios) {
 			existe = true;
-			System.out.println("Administrador existe!");
-		} else {
-			System.out.println("Administrador não existe!");
-		}
+			
+		} 
 		return existe;
 	}
 	

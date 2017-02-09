@@ -54,7 +54,7 @@ public class Fachada implements IFachada {
    public void removerEvento(String nome){
 	   controladorCliente.remover(nome);
    }
-   
+
    public boolean loginAdm(String login, String senha){
 	   return controladorAdm.loginAdm(login, senha);
    }
@@ -63,5 +63,5 @@ public class Fachada implements IFachada {
 	   return controladorCliente.loginCliente(login, senha);
    }
    
-   
 }
+   
