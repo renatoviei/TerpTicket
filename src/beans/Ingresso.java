@@ -1,9 +1,8 @@
 package beans;
 
-public class Ingresso  {
-	
+public class Ingresso {
+
 	private long codigo;
-	
 
 	public Ingresso(long codigo) {
 
@@ -17,7 +16,5 @@ public class Ingresso  {
 	public void setCodigo(long codigo) {
 		this.codigo = codigo;
 	}
-
-	
 
 }

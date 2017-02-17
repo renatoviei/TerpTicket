@@ -15,58 +15,55 @@ public class Evento {
 		this.nome = nome;
 		this.preco = preco;
 		this.local = local;
-	    this.bandas = bandas;
+		this.bandas = bandas;
 		this.ingressos = ingressos;
-		
+
 	}
-	
-	
+
 	public String getNome() {
 		return nome;
 	}
 
-    public int getPreco() {
+	public int getPreco() {
 		return preco;
 	}
 
-    public Local getLocal() {
+	public Local getLocal() {
 		return local;
 	}
 
-    public String[] getBandas() {
+	public String[] getBandas() {
 		return bandas;
 	}
 
-    public Ingresso getIngressos() {
+	public Ingresso getIngressos() {
 		return ingressos;
 	}
 
-    public void setNome(String nome) {
+	public void setNome(String nome) {
 		this.nome = nome;
 	}
 
-    public void setPreco(int preco) {
+	public void setPreco(int preco) {
 		this.preco = preco;
 	}
 
-    public void setLocal(Local local) {
+	public void setLocal(Local local) {
 		this.local = local;
 	}
 
-    public void setBandas(String[] bandas) {
+	public void setBandas(String[] bandas) {
 		this.bandas = bandas;
 	}
 
-    public void setIngressos(Ingresso ingressos) {
+	public void setIngressos(Ingresso ingressos) {
 		this.ingressos = ingressos;
 	}
 
 	@Override
 	public String toString() {
-		return "Evento [Nome=" + nome + ", Preco=R$ " + preco + ",00, Local=" + local + ", Bandas=" + Arrays.toString(bandas)
-				+ ", ingressos=" + ingressos + "]";
+		return "Evento: " + nome + "\nPreço: R$ " + preco + ",00" + "\nLocal: " + local + "Bandas: "
+				+ Arrays.toString(bandas) + "\nIngressos: " + ingressos;
 	}
-
-	
 
 }

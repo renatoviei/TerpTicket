@@ -1,4 +1,5 @@
 package dados;
+
 import beans.Administrador;
 import java.util.Scanner;
 
@@ -11,7 +12,7 @@ public class ControladorAdm implements IControladorAdm {
 	}
 
 	public boolean cadastrar(Administrador adm) {
-		
+
 		boolean resposta = false;
 		if (adm == null) {
 			System.out.println("PARAMETRO INVALIDO");
@@ -26,23 +27,21 @@ public class ControladorAdm implements IControladorAdm {
 		}
 		return resposta;
 	}
-	
+
 	public Administrador buscarAdm(String login) {
 		return this.repositorio.buscarAdm(login);
 	}
-	
+
 	public void remover(String login) {
-		
-		
+
 		boolean x = false;
-		
+
 		while (x == false) {
 			sc = new Scanner(System.in);
 			System.out.println("Digite sua senha:");
 			String s = sc.next();
 			Administrador aux = buscarAdm(login);
-			
-			
+
 			if (s.equals(aux.getSenha())) {
 				this.repositorio.remover(login);
 				x = true;
@@ -53,11 +52,11 @@ public class ControladorAdm implements IControladorAdm {
 		}
 
 	}
-	
+
 	public boolean loginAdm(String login, String senha) {
-		
+
 		boolean logado = false;
-		
+
 		if (repositorio.existe(login) && repositorio.buscarAdm(login).getSenha().equals(senha)) {
 			logado = true;
 			System.out.println("\nLogin realizado!");

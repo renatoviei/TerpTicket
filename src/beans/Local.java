@@ -3,11 +3,8 @@ package beans;
 public class Local {
 	private String casaDeShow;
 	private String endereco;
-	private String dataHorario;   	//GALERA, USA O JAVA.TIME SE POSSIVEL, PQ ACHO Q ASSIM
-	private int capacidade;         //FICA FEIOSO
-	
-	
-
+	private String dataHorario;
+	private int capacidade;
 
 	public Local(String casaDeShow, String endereco, String dataHorario, int capacidade) {
 		super();
@@ -51,14 +48,8 @@ public class Local {
 
 	@Override
 	public String toString() {
-		return "Local [casaDeShow=" + casaDeShow + ", endereco=" + endereco + ", dataHorario=" + dataHorario
-				+ ", capacidade=" + capacidade + "]";
+		return "\n\nLocal do evento: " + casaDeShow + "\nEndereco: " + endereco + "\nInicio: " + dataHorario
+				+ "\nIngressos restantes: " + capacidade +"\n";
 	}
 
-	
-	
-
-	
-
-	
 }

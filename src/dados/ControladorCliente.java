@@ -1,4 +1,5 @@
 package dados;
+
 import beans.Cliente;
 import java.util.Scanner;
 
@@ -25,11 +26,11 @@ public class ControladorCliente implements IControladorCliente {
 		}
 		return resposta;
 	}
-	
+
 	public Cliente buscarCliente(String login) {
 		return this.repositorio.buscarCliente(login);
 	}
-	
+
 	public void remover(String login) {
 		sc = new Scanner(System.in);
 		boolean x = false;
@@ -47,7 +48,7 @@ public class ControladorCliente implements IControladorCliente {
 		}
 
 	}
-	
+
 	public boolean loginCliente(String login, String senha) {
 		boolean logado = false;
 		if (repositorio.existe(login) && repositorio.buscarCliente(login).getSenha().equals(senha)) {

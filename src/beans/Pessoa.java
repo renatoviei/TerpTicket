@@ -31,8 +31,6 @@ public class Pessoa {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	
-	
 
 	public String getLogin() {
 		return login;
@@ -57,7 +55,5 @@ public class Pessoa {
 	public void setIdade(int idade) {
 		this.idade = idade;
 	}
-
-	
 
 }
