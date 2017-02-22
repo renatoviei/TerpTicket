@@ -6,5 +6,7 @@ public class Administrador extends Pessoa {
 		super(nome, email, login, senha, idade);
 
 	}
+	
+	
 
 }

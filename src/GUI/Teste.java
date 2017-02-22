@@ -9,19 +9,20 @@ import beans.Evento;
 import beans.Ingresso;
 import beans.Local;
 import dados.Fachada;
-import dados.RepositorioAdministrador;
 import dados.RepositorioEventos;
 
 public class Teste {
 	private static Scanner sc;
 	private static Scanner sc1;
+	private static Scanner sc2;
 
 	public static void main(String[] args) {
 
 		char cond = 0;
 		sc = new Scanner(System.in);
 		sc1 = new Scanner(System.in);
-		Fachada fachada = new Fachada();
+		sc2 = new Scanner(System.in);
+		Fachada fachada = Fachada.getInstance();
 
 		while (cond != '3' || cond != '3') {
 
@@ -54,8 +55,8 @@ public class Teste {
 
 					Administrador adm = new Administrador(nome, email, login, senha, idade);
 					fachada.cadastarAdm(adm);
-					RepositorioAdministrador adm1 = new RepositorioAdministrador();
-					System.out.println(adm1.getUsuarioAdm());
+
+					System.out.println(fachada.buscarAdm(login));
 
 					break;
 
@@ -79,6 +80,7 @@ public class Teste {
 					fachada.cadastarCliente(cliente);
 
 					System.out.println("\nCliente criado!");
+					System.out.println(fachada.buscarCliente(login1));
 					break;
 
 				default:
@@ -110,7 +112,7 @@ public class Teste {
 					switch (menu21) {
 					case '1':
 						System.out.println("Digite o nome do evento: ");
-						Scanner sc2 = new Scanner(System.in);
+
 						String nomeDoEvento = sc2.nextLine();
 						sc1.nextLine();
 
@@ -158,22 +160,21 @@ public class Teste {
 						fachada.cadastarEvento(evento);
 
 						System.out.println(fachada.buscarEvento(nomeDoEvento));
-						System.out.println(fachada.buscarEvento(nomeDoEvento).getIngressos().getCodigo());
+						System.out.println(
+								"Código do ingresso: " + fachada.buscarEvento(nomeDoEvento).getIngressos().getCodigo());
 						break;
 					case '2':
+
 						System.out.println("Digite o nome do evento: ");
 						String nome1 = sc1.nextLine();
 						sc1.nextLine();
 
 						fachada.removerEvento(nome1);
-						RepositorioEventos repositorio1 = new RepositorioEventos();
+						RepositorioEventos repositorio1 = RepositorioEventos.getInstance();
 						System.out.println(repositorio1.getEventos());
-
 						break;
 					case '3':
 						fachada.removerAdm(login);
-						RepositorioAdministrador adm2 = new RepositorioAdministrador();
-						System.out.println(adm2.getQuantUsuarios());
 
 						break;
 
@@ -204,8 +205,6 @@ public class Teste {
 
 							System.out.println("\n" + fachada.buscarEvento(busca));
 							System.out.println(fachada.buscarEvento(busca).getIngressos().getCodigo());
-							System.out.println("\nQuantidade de ingressos: "
-									+ fachada.buscarEvento(busca).getLocal().getCapacidade());
 
 							if (fachada.buscarEvento(busca).getLocal().getCapacidade() > 0) {
 
@@ -216,8 +215,6 @@ public class Teste {
 								fachada.buscarEvento(busca).getLocal().setCapacidade(aux - quantIngressos);
 								System.out.println("\n" + fachada.buscarEvento(busca));
 
-								System.out.println("\nQuantidade de ingressos: "
-										+ fachada.buscarEvento(busca).getLocal().getCapacidade());
 								System.out.println(
 										"\nAgora escolha a forma de pagamento e obrigado por escolher a TerpTickets!");
 							} else {

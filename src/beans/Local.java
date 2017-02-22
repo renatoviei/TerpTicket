@@ -48,7 +48,7 @@ public class Local {
 
 	@Override
 	public String toString() {
-		return "\n\nLocal do evento: " + casaDeShow + "\nEndereco: " + endereco + "\nInicio: " + dataHorario
+		return "\nLocal do evento: " + casaDeShow + "\nEndereco: " + endereco + "\nInicio: " + dataHorario
 				+ "\nIngressos restantes: " + capacidade +"\n";
 	}
 

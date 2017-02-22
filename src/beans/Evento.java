@@ -62,8 +62,7 @@ public class Evento {
 
 	@Override
 	public String toString() {
-		return "Evento: " + nome + "\nPreço: R$ " + preco + ",00" + "\nLocal: " + local + "Bandas: "
-				+ Arrays.toString(bandas) + "\nIngressos: " + ingressos;
+		return "Evento: " + nome + "\nPreço: R$ " + preco + ",00" + local + "Bandas: " + Arrays.toString(bandas);
 	}
 
 }

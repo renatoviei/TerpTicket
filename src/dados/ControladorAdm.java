@@ -8,7 +8,7 @@ public class ControladorAdm implements IControladorAdm {
 	private Scanner sc;
 
 	public ControladorAdm() {
-		this.repositorio = new RepositorioAdministrador();
+		this.repositorio = RepositorioAdministrador.getInstance();
 	}
 
 	public boolean cadastrar(Administrador adm) {

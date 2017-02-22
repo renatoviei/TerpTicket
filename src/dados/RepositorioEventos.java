@@ -1,16 +1,22 @@
 package dados;
 
-import java.util.Arrays;
-
 import beans.Evento;
 
 public class RepositorioEventos implements IRepositorioEventos {
 	private Evento[] eventos;
 	private int quanEventos;
+	private static RepositorioEventos instance;
 
 	public RepositorioEventos() {
 		this.eventos = new Evento[100];
 		this.quanEventos = 0;
+	}
+
+	public static RepositorioEventos getInstance() {
+		if (instance == null) {
+			instance = new RepositorioEventos();
+		}
+		return instance;
 	}
 
 	public Evento[] getEventos() {
@@ -21,11 +27,11 @@ public class RepositorioEventos implements IRepositorioEventos {
 		return quanEventos;
 	}
 
-	public int buscarIndiceNome(String login) {
+	public int buscarIndiceNome(String nome) {
 		int i = 0;
 		boolean resposta = false;
 		while (resposta != true && i < this.quanEventos) {
-			if (login.equals(this.eventos[i].getNome())) {
+			if (nome.equals(this.eventos[i].getNome())) {
 				resposta = true;
 			} else {
 				i = i + 1;
@@ -82,11 +88,6 @@ public class RepositorioEventos implements IRepositorioEventos {
 		}
 
 		return existe;
-	}
-
-	@Override
-	public String toString() {
-		return "RepositorioEventos [eventos=" + Arrays.toString(eventos) + "]";
 	}
 
 }

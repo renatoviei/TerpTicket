@@ -8,7 +8,7 @@ public interface IRepositorioCliente {
 
 	boolean cadastrar(Cliente usuario);
 
-	boolean remover(String nome);
+	boolean remover(String login);
 
 	boolean existe(String nome);
 }

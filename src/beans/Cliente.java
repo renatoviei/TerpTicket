@@ -1,19 +1,19 @@
 package beans;
 
 public class Cliente extends Pessoa {
-	private Ingresso[] ingressos;
+	private long[] ingressos;
 
-	public Cliente(String nome, String email, String login, String senha, int idade, Ingresso[] ingresso) {
+	public Cliente(String nome, String email, String login, String senha, int idade, long[] ingressos) {
 		super(nome, email, login, senha, idade);
-		this.setIngressos(ingresso);
+		this.setIngressos(ingressos);
 
 	}
 
-	public Ingresso[] getIngressos() {
+	public long[] getIngressos() {
 		return ingressos;
 	}
 
-	public void setIngressos(Ingresso[] ingressos) {
+	public void setIngressos(long[] ingressos) {
 		this.ingressos = ingressos;
 	}
 

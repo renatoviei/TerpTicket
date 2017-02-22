@@ -5,10 +5,18 @@ import beans.Administrador;
 public class RepositorioAdministrador implements IRepositorioAdm {
 	private Administrador[] usuarios;
 	private int quanUsuarios;
+	private static RepositorioAdministrador instance;
 
 	public RepositorioAdministrador() {
 		this.usuarios = new Administrador[100];
 		this.quanUsuarios = 0;
+	}
+	
+	public static RepositorioAdministrador getInstance() {
+		if (instance == null) {
+			instance = new RepositorioAdministrador();
+		}
+		return instance;
 	}
 
 	public Administrador[] getUsuarioAdm() {

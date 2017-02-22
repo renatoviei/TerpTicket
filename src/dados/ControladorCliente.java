@@ -8,7 +8,7 @@ public class ControladorCliente implements IControladorCliente {
 	private Scanner sc;
 
 	public ControladorCliente() {
-		this.repositorio = new RepositorioCliente();
+		this.repositorio = RepositorioCliente.getInstance();
 	}
 
 	public boolean cadastrar(Cliente cliente) {
@@ -52,10 +52,11 @@ public class ControladorCliente implements IControladorCliente {
 	public boolean loginCliente(String login, String senha) {
 		boolean logado = false;
 		if (repositorio.existe(login) && repositorio.buscarCliente(login).getSenha().equals(senha)) {
+
 			logado = true;
 			System.out.println("Login realizado com sucesso!");
 		} else {
-			System.out.println("LOGIN NÃO REALIZADO!");
+			System.out.println("LOGIN NÃO REALIZADO. CONTA NAO EXISTE!");
 		}
 		return logado;
 	}

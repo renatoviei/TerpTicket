@@ -8,11 +8,19 @@ public class Fachada implements IFachada {
 	private IControladorAdm controladorAdm;
 	private IControladorCliente controladorCliente;
 	private IControladorEventos controladorEvento;
+	private static Fachada instance;
 
 	public Fachada() {
 		this.controladorAdm = new ControladorAdm();
 		this.controladorCliente = new ControladorCliente();
 		this.controladorEvento = new ControladorEventos();
+	}
+
+	public static Fachada getInstance() {
+		if (instance == null) {
+			instance = new Fachada();
+		}
+		return instance;
 	}
 
 	public void cadastarAdm(Administrador adm) {
@@ -52,7 +60,7 @@ public class Fachada implements IFachada {
 	}
 
 	public void removerEvento(String nome) {
-		controladorCliente.remover(nome);
+		controladorEvento.remover(nome);
 	}
 
 	public boolean loginAdm(String login, String senha) {

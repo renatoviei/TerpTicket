@@ -5,10 +5,18 @@ import beans.Cliente;
 public class RepositorioCliente implements IRepositorioCliente {
 	private Cliente[] usuarios;
 	private int quanUsuarios;
+	private static RepositorioCliente instance;
 
 	public RepositorioCliente() {
-		this.usuarios = new Cliente[100];
+		this.usuarios = new Cliente[1000];
 		this.quanUsuarios = 0;
+	}
+
+	public static RepositorioCliente getInstance() {
+		if (instance == null) {
+			instance = new RepositorioCliente();
+		}
+		return instance;
 	}
 
 	public Cliente[] getUsuario() {
@@ -64,6 +72,8 @@ public class RepositorioCliente implements IRepositorioCliente {
 			this.usuarios[i] = this.usuarios[this.quanUsuarios - 1];
 			this.usuarios[this.quanUsuarios - 1] = null;
 			this.quanUsuarios--;
+		} else {
+			resposta = false;
 		}
 
 		return resposta;

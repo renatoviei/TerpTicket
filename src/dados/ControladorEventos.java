@@ -6,7 +6,7 @@ public class ControladorEventos implements IControladorEventos {
 	private IRepositorioEventos repositorio;
 
 	public ControladorEventos() {
-		this.repositorio = new RepositorioEventos();
+		this.repositorio = RepositorioEventos.getInstance();
 	}
 
 	public boolean cadastrar(Evento event) {
@@ -31,6 +31,7 @@ public class ControladorEventos implements IControladorEventos {
 	}
 
 	public void remover(String nome) {
+
 		boolean x = false;
 		while (x == false) {
 
@@ -39,7 +40,7 @@ public class ControladorEventos implements IControladorEventos {
 				x = true;
 				System.out.println("Evento removido com sucesso!");
 			} else {
-				System.out.println("PARAMETRO INVALIDO, DIGITE NOVAMENTE");
+				System.out.println("NOME INVALIDO, DIGITE NOVAMENTE");
 			}
 		}
 
