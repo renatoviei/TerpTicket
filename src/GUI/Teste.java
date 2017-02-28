@@ -8,8 +8,8 @@ import beans.Cliente;
 import beans.Evento;
 import beans.Ingresso;
 import beans.Local;
-import dados.Fachada;
-import dados.RepositorioEventos;
+
+import negocio.Fachada;
 
 public class Teste {
 	private static Scanner sc;
@@ -170,8 +170,7 @@ public class Teste {
 						sc1.nextLine();
 
 						fachada.removerEvento(nome1);
-						RepositorioEventos repositorio1 = RepositorioEventos.getInstance();
-						System.out.println(repositorio1.getEventos());
+						
 						break;
 					case '3':
 						fachada.removerAdm(login);

@@ -1,4 +1,4 @@
-package dados;
+package negocio;
 
 import beans.Administrador;
 import beans.Cliente;

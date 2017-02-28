@@ -8,7 +8,7 @@ public interface IRepositorioEventos {
 
 	boolean cadastrar(Evento even);
 
-	boolean remover(String nome);
+	void remover(String nome);
 
 	boolean existe(String nome);
 }

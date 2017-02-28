@@ -1,14 +1,17 @@
 package dados;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import beans.Evento;
 
 public class RepositorioEventos implements IRepositorioEventos {
-	private Evento[] eventos;
+	private List<Evento> eventos;
 	private int quanEventos;
 	private static RepositorioEventos instance;
 
 	public RepositorioEventos() {
-		this.eventos = new Evento[100];
+		this.eventos = new ArrayList<Evento>(100);
 		this.quanEventos = 0;
 	}
 
@@ -19,7 +22,7 @@ public class RepositorioEventos implements IRepositorioEventos {
 		return instance;
 	}
 
-	public Evento[] getEventos() {
+	public List<Evento> getEventos() {
 		return eventos;
 	}
 
@@ -31,7 +34,7 @@ public class RepositorioEventos implements IRepositorioEventos {
 		int i = 0;
 		boolean resposta = false;
 		while (resposta != true && i < this.quanEventos) {
-			if (nome.equals(this.eventos[i].getNome())) {
+			if (nome.equals(this.eventos.get(i).getNome())) {
 				resposta = true;
 			} else {
 				i = i + 1;
@@ -44,7 +47,7 @@ public class RepositorioEventos implements IRepositorioEventos {
 	public Evento buscarEvento(String nome) {
 		Evento evento = null;
 		if (nome != null) {
-			evento = eventos[buscarIndiceNome(nome)];
+			evento = this.eventos.get(buscarIndiceNome(nome));
 
 		} else {
 			System.out.println("Evento não existe");
@@ -56,28 +59,24 @@ public class RepositorioEventos implements IRepositorioEventos {
 	public boolean cadastrar(Evento even) {
 		boolean resposta = true;
 		if (eventos != null) {
-			if (this.eventos[quanEventos] == null) {
-				eventos[quanEventos] = even;
-				quanEventos++;
 
-			} else
-				resposta = false;
+			this.eventos.add(even);
+			quanEventos++;
+
+		} else {
+			resposta = false;
 
 		}
 		return resposta;
 	}
 
-	public boolean remover(String nome) {
-		boolean resposta = true;
-		int i = buscarIndiceNome(nome);
-		if (i != this.quanEventos) {
-			this.eventos[i] = this.eventos[this.quanEventos - 1];
-			this.eventos[this.quanEventos - 1] = null;
-			this.quanEventos--;
-		} else {
-			resposta = false;
+	public void remover(String nome) {
+
+		if (existe(nome)) {
+
+			this.eventos.remove(buscarEvento(nome));
+
 		}
-		return resposta;
 	}
 
 	public boolean existe(String nome) {

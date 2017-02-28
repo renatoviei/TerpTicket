@@ -1,6 +1,8 @@
-package dados;
+package negocio;
 
 import beans.Evento;
+import dados.IRepositorioEventos;
+import dados.RepositorioEventos;
 
 public class ControladorEventos implements IControladorEventos {
 	private IRepositorioEventos repositorio;
@@ -27,6 +29,7 @@ public class ControladorEventos implements IControladorEventos {
 	}
 
 	public Evento buscarEvento(String nome) {
+
 		return this.repositorio.buscarEvento(nome);
 	}
 

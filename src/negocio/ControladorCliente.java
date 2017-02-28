@@ -1,6 +1,9 @@
-package dados;
+package negocio;
 
 import beans.Cliente;
+import dados.IRepositorioCliente;
+import dados.RepositorioCliente;
+
 import java.util.Scanner;
 
 public class ControladorCliente implements IControladorCliente {

@@ -1,6 +1,9 @@
-package dados;
+package negocio;
 
 import beans.Administrador;
+import dados.IRepositorioAdm;
+import dados.RepositorioAdministrador;
+
 import java.util.Scanner;
 
 public class ControladorAdm implements IControladorAdm {

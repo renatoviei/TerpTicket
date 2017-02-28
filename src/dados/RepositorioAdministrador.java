@@ -1,17 +1,20 @@
 package dados;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import beans.Administrador;
 
 public class RepositorioAdministrador implements IRepositorioAdm {
-	private Administrador[] usuarios;
+	private List<Administrador> usuarios;
 	private int quanUsuarios;
 	private static RepositorioAdministrador instance;
 
 	public RepositorioAdministrador() {
-		this.usuarios = new Administrador[100];
+		this.usuarios = new ArrayList<Administrador>(100);
 		this.quanUsuarios = 0;
 	}
-	
+
 	public static RepositorioAdministrador getInstance() {
 		if (instance == null) {
 			instance = new RepositorioAdministrador();
@@ -19,7 +22,7 @@ public class RepositorioAdministrador implements IRepositorioAdm {
 		return instance;
 	}
 
-	public Administrador[] getUsuarioAdm() {
+	public List<Administrador> getUsuarioAdm() {
 		return usuarios;
 	}
 
@@ -31,7 +34,7 @@ public class RepositorioAdministrador implements IRepositorioAdm {
 		int i = 0;
 		boolean resposta = false;
 		while (resposta != true && i < this.quanUsuarios) {
-			if (login.equals(this.usuarios[i].getLogin())) {
+			if (login.equals(this.usuarios.get(i).getLogin())) {
 				resposta = true;
 			} else {
 				i = i + 1;
@@ -44,7 +47,7 @@ public class RepositorioAdministrador implements IRepositorioAdm {
 	public Administrador buscarAdm(String login) {
 		Administrador adm = null;
 		if (login != null) {
-			adm = usuarios[buscarIndiceLogin(login)];
+			adm = this.usuarios.get(buscarIndiceLogin(login));
 
 		} else {
 			System.out.println("Administrador não existe");
@@ -56,12 +59,12 @@ public class RepositorioAdministrador implements IRepositorioAdm {
 	public boolean cadastrar(Administrador usuario) {
 		boolean resposta = true;
 		if (usuario != null) {
-			if (this.usuarios[quanUsuarios] == null) {
-				usuarios[quanUsuarios] = usuario;
-				quanUsuarios++;
 
-			} else
-				resposta = false;
+			this.usuarios.add(usuario);
+			quanUsuarios++;
+
+		} else {
+			resposta = false;
 
 		}
 		return resposta;
@@ -69,12 +72,10 @@ public class RepositorioAdministrador implements IRepositorioAdm {
 
 	public boolean remover(String login) {
 		boolean resposta = true;
-		int i = buscarIndiceLogin(login);
 
-		if (i != this.quanUsuarios) {
-			this.usuarios[i] = this.usuarios[this.quanUsuarios - 1];
-			this.usuarios[this.quanUsuarios - 1] = null;
-			this.quanUsuarios--;
+		if (existe(login)) {
+
+			this.usuarios.remove(buscarAdm(login));
 
 		} else {
 			resposta = false;

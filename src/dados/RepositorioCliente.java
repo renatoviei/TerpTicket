@@ -1,14 +1,17 @@
 package dados;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import beans.Cliente;
 
 public class RepositorioCliente implements IRepositorioCliente {
-	private Cliente[] usuarios;
+	private List<Cliente> usuarios;
 	private int quanUsuarios;
 	private static RepositorioCliente instance;
 
 	public RepositorioCliente() {
-		this.usuarios = new Cliente[1000];
+		this.usuarios = new ArrayList<Cliente>(10000);
 		this.quanUsuarios = 0;
 	}
 
@@ -19,7 +22,7 @@ public class RepositorioCliente implements IRepositorioCliente {
 		return instance;
 	}
 
-	public Cliente[] getUsuario() {
+	public List<Cliente> getUsuario() {
 		return usuarios;
 	}
 
@@ -31,7 +34,7 @@ public class RepositorioCliente implements IRepositorioCliente {
 		int i = 0;
 		boolean resposta = false;
 		while (resposta != true && i < this.quanUsuarios) {
-			if (login.equals(this.usuarios[i].getLogin())) {
+			if (login.equals(this.usuarios.get(i).getLogin())) {
 				resposta = true;
 			} else {
 				i = i + 1;
@@ -42,23 +45,24 @@ public class RepositorioCliente implements IRepositorioCliente {
 	}
 
 	public Cliente buscarCliente(String login) {
+		Cliente cliente = null;
 		if (login != null) {
-			Cliente cliente = usuarios[buscarIndiceCliente(login)];
-			return cliente;
+			cliente = this.usuarios.get(buscarIndiceCliente(login));
+
 		}
-		return null;
+		return cliente;
 
 	}
 
 	public boolean cadastrar(Cliente usuario) {
 		boolean resposta = true;
 		if (usuario != null) {
-			if (this.usuarios[quanUsuarios] == null) {
-				usuarios[quanUsuarios] = usuario;
-				quanUsuarios++;
 
-			} else
-				resposta = false;
+			this.usuarios.add(usuario);
+			quanUsuarios++;
+
+		} else {
+			resposta = false;
 
 		}
 		return resposta;
@@ -66,12 +70,10 @@ public class RepositorioCliente implements IRepositorioCliente {
 
 	public boolean remover(String login) {
 		boolean resposta = true;
-		int i = buscarIndiceCliente(login);
 
-		if (i != this.quanUsuarios) {
-			this.usuarios[i] = this.usuarios[this.quanUsuarios - 1];
-			this.usuarios[this.quanUsuarios - 1] = null;
-			this.quanUsuarios--;
+		if (existe(login)) {
+
+			this.usuarios.remove(buscarCliente(login));
 		} else {
 			resposta = false;
 		}
