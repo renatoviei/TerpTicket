@@ -49,8 +49,6 @@ public class RepositorioEventos implements IRepositorioEventos {
 		if (nome != null) {
 			evento = this.eventos.get(buscarIndiceNome(nome));
 
-		} else {
-			System.out.println("Evento não existe");
 		}
 		return evento;
 

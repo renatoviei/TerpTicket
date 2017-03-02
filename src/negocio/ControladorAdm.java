@@ -3,6 +3,8 @@ package negocio;
 import beans.Administrador;
 import dados.IRepositorioAdm;
 import dados.RepositorioAdministrador;
+import exceções.AdmBException;
+import exceções.AdmCException;
 
 import java.util.Scanner;
 
@@ -14,7 +16,7 @@ public class ControladorAdm implements IControladorAdm {
 		this.repositorio = RepositorioAdministrador.getInstance();
 	}
 
-	public boolean cadastrar(Administrador adm) {
+	public boolean cadastrar (Administrador adm) throws AdmCException {
 
 		boolean resposta = false;
 		if (adm == null) {
@@ -25,16 +27,25 @@ public class ControladorAdm implements IControladorAdm {
 				System.out.println("Administrador criado com sucesso!");
 				resposta = true;
 			} else {
-				System.out.println("ERRO! LOGIN JÁ CADASTRADO! ");
+				AdmCException admc = new AdmCException(adm);
+				throw admc;
 			}
 		}
 		return resposta;
 	}
 
-	public Administrador buscarAdm(String login) {
-		return this.repositorio.buscarAdm(login);
+	public Administrador buscarAdm(String login)throws AdmBException {
+		Administrador adm = null;
+		if(this.repositorio.buscarAdm(login) == null){
+			AdmBException admb = new AdmBException(login); 
+			throw admb;
+			
+		}else{
+		adm = repositorio.buscarAdm(login);
+		}
+		return adm;
 	}
-
+	
 	public void remover(String login) {
 
 		boolean x = false;
@@ -43,7 +54,13 @@ public class ControladorAdm implements IControladorAdm {
 			sc = new Scanner(System.in);
 			System.out.println("Digite sua senha:");
 			String s = sc.next();
-			Administrador aux = buscarAdm(login);
+			Administrador aux = null;
+			try {
+				aux = buscarAdm(login);
+			} catch (AdmBException e) {
+				
+				e.printStackTrace();
+			}
 
 			if (s.equals(aux.getSenha())) {
 				this.repositorio.remover(login);

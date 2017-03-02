@@ -49,8 +49,6 @@ public class RepositorioAdministrador implements IRepositorioAdm {
 		if (login != null) {
 			adm = this.usuarios.get(buscarIndiceLogin(login));
 
-		} else {
-			System.out.println("Administrador não existe");
 		}
 		return adm;
 

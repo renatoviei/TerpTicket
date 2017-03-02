@@ -3,6 +3,12 @@ package negocio;
 import beans.Administrador;
 import beans.Cliente;
 import beans.Evento;
+import exceções.AdmBException;
+import exceções.AdmCException;
+import exceções.ClienteBException;
+import exceções.ClienteCException;
+import exceções.EvenBException;
+import exceções.EventCException;
 
 public class Fachada implements IFachada {
 	private IControladorAdm controladorAdm;
@@ -23,27 +29,27 @@ public class Fachada implements IFachada {
 		return instance;
 	}
 
-	public void cadastarAdm(Administrador adm) {
+	public void cadastarAdm(Administrador adm) throws AdmCException {
 		controladorAdm.cadastrar(adm);
 	}
 
-	public void cadastarCliente(Cliente cliente) {
+	public void cadastarCliente(Cliente cliente) throws ClienteCException {
 		controladorCliente.cadastrar(cliente);
 	}
 
-	public void cadastarEvento(Evento evento) {
+	public void cadastarEvento(Evento evento) throws EventCException {
 		controladorEvento.cadastrar(evento);
 	}
 
-	public Administrador buscarAdm(String login) {
+	public Administrador buscarAdm(String login) throws AdmBException {
 		return controladorAdm.buscarAdm(login);
 	}
 
-	public Cliente buscarCliente(String login) {
+	public Cliente buscarCliente(String login) throws ClienteBException {
 		return controladorCliente.buscarCliente(login);
 	}
 
-	public Evento buscarEvento(String nome) {
+	public Evento buscarEvento(String nome) throws EvenBException {
 		return controladorEvento.buscarEvento(nome);
 	}
 
