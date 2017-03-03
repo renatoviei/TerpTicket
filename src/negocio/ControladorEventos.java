@@ -3,8 +3,6 @@ package negocio;
 import beans.Evento;
 import dados.IRepositorioEventos;
 import dados.RepositorioEventos;
-import exceções.EvenBException;
-import exceções.EventCException;
 
 public class ControladorEventos implements IControladorEventos {
 	private IRepositorioEventos repositorio;
@@ -13,7 +11,7 @@ public class ControladorEventos implements IControladorEventos {
 		this.repositorio = RepositorioEventos.getInstance();
 	}
 
-	public boolean cadastrar(Evento event) throws EventCException {
+	public boolean cadastrar(Evento event) {
 		boolean resposta = false;
 
 		if (event == null) {
@@ -24,18 +22,16 @@ public class ControladorEventos implements IControladorEventos {
 				resposta = true;
 				System.out.println("Evento cadastrado com sucesso!!");
 			} else {
-				EventCException evenc = new EventCException(event);
-				throw evenc;
+				System.out.println("ERRO! EVENTO JÁ CADASTRADO. TENTE OUTRO.");
 			}
 		}
 		return resposta;
 	}
 
-	public Evento buscarEvento(String nome) throws EvenBException {
+	public Evento buscarEvento(String nome) {
 		Evento even = null;
 		if (this.repositorio.buscarEvento(nome) == null) {
-			EvenBException evenb = new EvenBException(nome);
-			throw evenb;
+			System.out.println("Evento não existe");
 		} else {
 			even = repositorio.buscarEvento(nome);
 		}

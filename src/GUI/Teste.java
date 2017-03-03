@@ -8,12 +8,7 @@ import beans.Cliente;
 import beans.Evento;
 import beans.Ingresso;
 import beans.Local;
-import exceções.AdmBException;
-import exceções.AdmCException;
-import exceções.ClienteBException;
-import exceções.ClienteCException;
-import exceções.EvenBException;
-import exceções.EventCException;
+
 import negocio.Fachada;
 
 public class Teste {
@@ -39,7 +34,7 @@ public class Teste {
 			switch (cond) {
 			case '1':
 				System.out.println("Escolha uma opçao\n\n" + "1-Cadastrar administrador\n" + "2-Cadastrar cliente\n");
-				char menu1 = sc.next().charAt(0);
+				char menu1 = sc.next().charAt(0); sc.nextLine();
 
 				switch (menu1) {
 				case '1':
@@ -59,19 +54,10 @@ public class Teste {
 					String senha = sc1.nextLine();
 
 					Administrador adm = new Administrador(nome, email, login, senha, idade);
-					try {
-						fachada.cadastarAdm(adm);
-					} catch (AdmCException e) {
-						
-						System.out.println(e.getMessage());
-					}
-                    
-					try {
-						System.out.println(fachada.buscarAdm(login));
-					} catch (AdmBException e) {
-						
-						System.out.println(e.getMessage());
-					}
+
+					fachada.cadastarAdm(adm);
+
+					System.out.println(fachada.buscarAdm(login));
 
 					break;
 
@@ -92,20 +78,11 @@ public class Teste {
 					String senha1 = sc1.nextLine();
 
 					Cliente cliente = new Cliente(nome1, email1, login1, senha1, idade1, null);
-					try {
-						fachada.cadastarCliente(cliente);
-					} catch (ClienteCException e1) {
-						
-						System.out.println(e1.getMessage());
-					}
 
-					System.out.println("\nCliente criado!");
-					try {
-						System.out.println(fachada.buscarCliente(login1));
-					} catch (ClienteBException e) {
-						
-						System.out.println(e.getMessage());
-					}
+					fachada.cadastarCliente(cliente);
+
+					System.out.println(fachada.buscarCliente(login1));
+
 					break;
 
 				default:
@@ -123,18 +100,17 @@ public class Teste {
 				case '1':
 					String login;
 					String senha;
-					do{
-					System.out.println("Digite seu login: ");
-					login = sc1.next();
+					do {
+						System.out.println("Digite seu login: ");
+						login = sc1.next();
 
-					System.out.println("Digite sua senha: ");
-					senha = sc1.next();
-					}
-					while(fachada.loginAdm(login, senha) != true);
+						System.out.println("Digite sua senha: ");
+						senha = sc1.next();
+					} while (fachada.loginAdm(login, senha) != true);
 
-						System.out.println("\nEscolha uma opçao\n" + "\n1-Criar evento\n" + "2-Remover evento\n"
-								+ "3-Remover conta\n");
-					
+					System.out.println("\nEscolha uma opçao\n" + "\n1-Criar evento\n" + "2-Remover evento\n"
+							+ "3-Remover conta\n");
+
 					char menu21 = sc.next().charAt(0);
 
 					switch (menu21) {
@@ -185,26 +161,14 @@ public class Teste {
 						Ingresso ingressos = new Ingresso(codigo);
 
 						Evento evento = new Evento(nomeDoEvento, preco, local, bandas, ingressos);
-						try {
-							fachada.cadastarEvento(evento);
-						} catch (EventCException e1) {
-							
-							System.out.println(e1.getMessage());
-						}
 
-						try {
-							System.out.println(fachada.buscarEvento(nomeDoEvento));
-						} catch (EvenBException e) {
-							
-							System.out.println(e.getMessage());
-						}
-						try {
-							System.out.println(
-									"Código do ingresso: " + fachada.buscarEvento(nomeDoEvento).getIngressos().getCodigo());
-						} catch (EvenBException e) {
-							
-							System.out.println(e.getMessage());
-						}
+						fachada.cadastarEvento(evento);
+
+						System.out.println(fachada.buscarEvento(nomeDoEvento));
+
+						System.out.println(
+								"Código do ingresso: " + fachada.buscarEvento(nomeDoEvento).getIngressos().getCodigo());
+
 						break;
 					case '2':
 
@@ -213,7 +177,7 @@ public class Teste {
 						sc1.nextLine();
 
 						fachada.removerEvento(nome1);
-						
+
 						break;
 					case '3':
 						fachada.removerAdm(login);
@@ -228,68 +192,54 @@ public class Teste {
 				case '2':
 					String login3;
 					String senha3;
-                    do{
-					System.out.println("Digite seu login: ");
-					login3 = sc1.next();
+					do {
+						System.out.println("Digite seu login: ");
+						login3 = sc1.next();
 
-					System.out.println("Digite sua senha: ");
-					senha3 = sc1.next();
-                    }
-				    while (fachada.loginCliente(login3, senha3) != true); 
-						System.out.println(
-								"\nEscolha uma opçao\n\n" + "1-Buscar evento\n" + "2-Remover conta\n" + "s-sair\n");
+						System.out.println("Digite sua senha: ");
+						senha3 = sc1.next();
+					} while (fachada.loginCliente(login3, senha3) != true);
+					System.out.println(
+							"\nEscolha uma opçao\n\n" + "1-Buscar evento\n" + "2-Remover conta\n" + "s-sair\n");
 
-						char menu3 = sc.next().charAt(0);
+					char menu3 = sc.next().charAt(0);
 
-						switch (menu3) {
-						case '1':
-							System.out.println("\nDigite o nome do evento: ");
-							Scanner sc3 = new Scanner(System.in);
-							String busca = sc3.nextLine();
+					switch (menu3) {
+					case '1':
+						System.out.println("\nDigite o nome do evento: ");
+						Scanner sc3 = new Scanner(System.in);
+						String busca = sc3.nextLine();
 
-							try {
-								System.out.println("\n" + fachada.buscarEvento(busca));
-							} catch (EvenBException e) {
-								
-								System.out.println(e.getMessage());
-							}
-							try {
-								System.out.println(fachada.buscarEvento(busca).getIngressos().getCodigo());
-							} catch (EvenBException e) {
-								
-								System.out.println(e.getMessage());
-							}
+						System.out.println("\n" + fachada.buscarEvento(busca));
 
-							try {
-								if (fachada.buscarEvento(busca).getLocal().getCapacidade() > 0) {
+						System.out.println(fachada.buscarEvento(busca).getIngressos().getCodigo());
 
-									System.out.println("\nQuantidade de ingressos que deseja comprar :");
-									int quantIngressos = sc1.nextInt();
-									int aux = fachada.buscarEvento(busca).getLocal().getCapacidade();
+						if (fachada.buscarEvento(busca).getLocal().getCapacidade() > 0) {
 
-									fachada.buscarEvento(busca).getLocal().setCapacidade(aux - quantIngressos);
-									System.out.println("\n" + fachada.buscarEvento(busca));
+							System.out.println("\nQuantidade de ingressos que deseja comprar :");
+							int quantIngressos = sc1.nextInt();
+							int aux = fachada.buscarEvento(busca).getLocal().getCapacidade();
 
-									System.out.println(
-											"\nAgora escolha a forma de pagamento e obrigado por escolher a TerpTickets!");
-								} else {
-									System.out.println("\nIngressos esgotados!");
-								}
-							} catch (EvenBException e) {
-								
-								System.out.println(e.getMessage());
-							}
-							break;
-						case '2':
-							fachada.removerCliente(login3);
+							fachada.buscarEvento(busca).getLocal().setCapacidade(aux - quantIngressos);
+							System.out.println("\n" + fachada.buscarEvento(busca));
 
-							break;
-						case 's':
-							break;
-						default:
-							System.out.println("Opção invalida!");
+							System.out.println(
+									"\nAgora escolha a forma de pagamento e obrigado por escolher a TerpTickets!");
+						} else {
+							System.out.println("\nIngressos esgotados!");
 						}
-					
+
+						break;
+					case '2':
+						fachada.removerCliente(login3);
+
+						break;
+					case 's':
+						break;
+					default:
+						System.out.println("Opção invalida!");
+					}
+
 					break;
 
 				default:

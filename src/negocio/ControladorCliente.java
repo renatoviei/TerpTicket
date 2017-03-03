@@ -4,9 +4,6 @@ import beans.Cliente;
 import dados.IRepositorioCliente;
 import dados.RepositorioCliente;
 
-import exceções.ClienteBException;
-import exceções.ClienteCException;
-
 import java.util.Scanner;
 
 public class ControladorCliente implements IControladorCliente {
@@ -17,33 +14,32 @@ public class ControladorCliente implements IControladorCliente {
 		this.repositorio = RepositorioCliente.getInstance();
 	}
 
-	public boolean cadastrar(Cliente cliente) throws ClienteCException {
+	public boolean cadastrar(Cliente cliente) {
 		boolean resposta = false;
 		if (cliente == null) {
 			System.out.println("PARAMETRO INVALIDO");
 		} else {
 			if (!(this.repositorio.existe(cliente.getLogin()))) {
 				this.repositorio.cadastrar(cliente);
-				System.out.println("cliente cadastrado com sucesso! ");
+				System.out.println("Cliente cadastrado com sucesso! ");
 				resposta = true;
 			} else {
-				ClienteCException clienc = new ClienteCException(cliente);
-				throw clienc;
+				System.out.println("ERRO! LOGIN JÁ CADASTRADO. TENTE OUTRO. ");
 			}
 		}
 		return resposta;
 	}
 
-	public Cliente buscarCliente(String login) throws ClienteBException {
+	public Cliente buscarCliente(String login) {
 		Cliente clien = null;
 		if (this.repositorio.buscarCliente(login) == null) {
-			ClienteBException clieb = new ClienteBException(login); 
-			throw clieb;
-		}else{
-		clien = repositorio.buscarCliente(login);
+			System.out.println("Cliente nao existe");
+		} else {
+			clien = repositorio.buscarCliente(login);
+		}
+		return clien;
 	}
-	return clien;
-	}
+
 	public void remover(String login) {
 		sc = new Scanner(System.in);
 		boolean x = false;
@@ -51,26 +47,17 @@ public class ControladorCliente implements IControladorCliente {
 			System.out.println("Digite sua senha:");
 			String s = sc.nextLine();
 			Cliente aux = null;
-			try {
-				aux = buscarCliente(login);
-			} catch (ClienteBException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			try {
-				if (s.equals(aux.getSenha())) {
-					this.repositorio.remover(login);
-					x = true;
-					System.out.println("Cliente removido com sucesso!");
-				} else {
-					System.out.println("Senha errada, digite novamente");
-				}
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+
+			aux = buscarCliente(login);
+
+			if (s.equals(aux.getSenha())) {
+				this.repositorio.remover(login);
+				x = true;
+				System.out.println("Cliente removido com sucesso!");
+			} else {
+				System.out.println("Senha errada, digite novamente");
 			}
 		}
-
 	}
 
 	public boolean loginCliente(String login, String senha) {

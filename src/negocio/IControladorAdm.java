@@ -1,14 +1,12 @@
 package negocio;
 
 import beans.Administrador;
-import exceções.AdmBException;
-import exceções.AdmCException;
 
 public interface IControladorAdm {
 
-	abstract boolean cadastrar(Administrador adm) throws AdmCException;
+	abstract boolean cadastrar(Administrador adm);
 
-	abstract Administrador buscarAdm(String login) throws AdmBException;
+	abstract Administrador buscarAdm(String login);
 
 	abstract void remover(String login);
 

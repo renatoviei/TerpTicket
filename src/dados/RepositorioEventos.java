@@ -72,7 +72,7 @@ public class RepositorioEventos implements IRepositorioEventos {
 
 		if (existe(nome)) {
 
-			this.eventos.remove(buscarEvento(nome));
+			this.eventos.remove(eventos.get(buscarIndiceNome(nome)));
 
 		}
 	}

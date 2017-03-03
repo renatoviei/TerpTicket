@@ -33,7 +33,7 @@ public class RepositorioCliente implements IRepositorioCliente {
 	public int buscarIndiceCliente(String login) {
 		int i = 0;
 		boolean resposta = false;
-		while (resposta != true && i < this.quanUsuarios) {
+		while (resposta != true && i < quanUsuarios) {
 			if (login.equals(this.usuarios.get(i).getLogin())) {
 				resposta = true;
 			} else {

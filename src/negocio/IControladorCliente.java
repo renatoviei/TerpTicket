@@ -1,14 +1,12 @@
 package negocio;
 
 import beans.Cliente;
-import exceções.ClienteBException;
-import exceções.ClienteCException;
 
 public interface IControladorCliente {
 
-	abstract boolean cadastrar(Cliente clente) throws ClienteCException;
+	abstract boolean cadastrar(Cliente clente);
 
-	abstract Cliente buscarCliente(String login) throws ClienteBException;
+	abstract Cliente buscarCliente(String login);
 
 	abstract void remover(String login);
 

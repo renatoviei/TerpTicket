@@ -3,26 +3,20 @@ package negocio;
 import beans.Administrador;
 import beans.Cliente;
 import beans.Evento;
-import exceções.AdmBException;
-import exceções.AdmCException;
-import exceções.ClienteBException;
-import exceções.ClienteCException;
-import exceções.EvenBException;
-import exceções.EventCException;
 
 public interface IFachada {
 
-	abstract void cadastarAdm(Administrador adm) throws AdmCException;
+	abstract void cadastarAdm(Administrador adm);
 
-	abstract void cadastarCliente(Cliente cliente) throws ClienteCException;
+	abstract void cadastarCliente(Cliente cliente);
 
-	abstract void cadastarEvento(Evento evento) throws EventCException;
+	abstract void cadastarEvento(Evento evento);
 
-	abstract Administrador buscarAdm(String login) throws AdmBException;
+	abstract Administrador buscarAdm(String login);
 
-	abstract Cliente buscarCliente(String login) throws ClienteBException;
+	abstract Cliente buscarCliente(String login);
 
-	abstract Evento buscarEvento(String nome) throws EvenBException;
+	abstract Evento buscarEvento(String nome);
 
 	abstract void removerAdm(String login);
 
