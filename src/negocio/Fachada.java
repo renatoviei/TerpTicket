@@ -71,4 +71,8 @@ public class Fachada implements IFachada {
 		return controladorCliente.loginCliente(login, senha);
 	}
 
+	public void venderIngrClien(int quantIngressos, String busca) {
+		controladorEvento.venderIngrClien(quantIngressos, busca);
+	}
+
 }

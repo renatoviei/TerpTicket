@@ -7,12 +7,12 @@ import beans.Cliente;
 
 public class RepositorioCliente implements IRepositorioCliente {
 	private List<Cliente> usuarios;
-	private int quanUsuarios;
+
 	private static RepositorioCliente instance;
 
 	public RepositorioCliente() {
-		this.usuarios = new ArrayList<Cliente>(10000);
-		this.quanUsuarios = 0;
+		this.usuarios = new ArrayList<Cliente>();
+
 	}
 
 	public static RepositorioCliente getInstance() {
@@ -26,14 +26,10 @@ public class RepositorioCliente implements IRepositorioCliente {
 		return usuarios;
 	}
 
-	public int getQuantUsuarios() {
-		return quanUsuarios;
-	}
-
 	public int buscarIndiceCliente(String login) {
 		int i = 0;
 		boolean resposta = false;
-		while (resposta != true && i < quanUsuarios) {
+		while (resposta != true && i < this.usuarios.size()) {
 			if (login.equals(this.usuarios.get(i).getLogin())) {
 				resposta = true;
 			} else {
@@ -59,7 +55,6 @@ public class RepositorioCliente implements IRepositorioCliente {
 		if (usuario != null) {
 
 			this.usuarios.add(usuario);
-			quanUsuarios++;
 
 		} else {
 			resposta = false;
@@ -84,9 +79,10 @@ public class RepositorioCliente implements IRepositorioCliente {
 	public boolean existe(String login) {
 		boolean existe = false;
 		int i = this.buscarIndiceCliente(login);
-		if (i != quanUsuarios) {
+		if (i != this.usuarios.size()) {
 			existe = true;
 		}
 		return existe;
 	}
+
 }

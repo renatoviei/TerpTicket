@@ -7,12 +7,12 @@ import beans.Administrador;
 
 public class RepositorioAdministrador implements IRepositorioAdm {
 	private List<Administrador> usuarios;
-	private int quanUsuarios;
+
 	private static RepositorioAdministrador instance;
 
 	public RepositorioAdministrador() {
-		this.usuarios = new ArrayList<Administrador>(100);
-		this.quanUsuarios = 0;
+		this.usuarios = new ArrayList<Administrador>();
+
 	}
 
 	public static RepositorioAdministrador getInstance() {
@@ -26,14 +26,10 @@ public class RepositorioAdministrador implements IRepositorioAdm {
 		return usuarios;
 	}
 
-	public int getQuantUsuarios() {
-		return quanUsuarios;
-	}
-
 	public int buscarIndiceLogin(String login) {
 		int i = 0;
 		boolean resposta = false;
-		while (resposta != true && i < this.quanUsuarios) {
+		while (resposta != true && i < this.usuarios.size()) {
 			if (login.equals(this.usuarios.get(i).getLogin())) {
 				resposta = true;
 			} else {
@@ -59,7 +55,6 @@ public class RepositorioAdministrador implements IRepositorioAdm {
 		if (usuario != null) {
 
 			this.usuarios.add(usuario);
-			quanUsuarios++;
 
 		} else {
 			resposta = false;
@@ -84,7 +79,7 @@ public class RepositorioAdministrador implements IRepositorioAdm {
 	public boolean existe(String login) {
 		boolean existe = false;
 		int i = this.buscarIndiceLogin(login);
-		if (i != quanUsuarios) {
+		if (i != this.usuarios.size()) {
 			existe = true;
 
 		}

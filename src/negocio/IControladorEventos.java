@@ -12,4 +12,6 @@ public interface IControladorEventos {
 
 	public abstract boolean existe(String nome);
 
+	public abstract void venderIngrClien(int quantIngressos, String busca);
+
 }

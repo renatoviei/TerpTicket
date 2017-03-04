@@ -11,5 +11,7 @@ public interface IControladorCliente {
 	abstract void remover(String login);
 
 	abstract boolean loginCliente(String login, String senha);
+	
+
 
 }

@@ -7,12 +7,12 @@ import beans.Evento;
 
 public class RepositorioEventos implements IRepositorioEventos {
 	private List<Evento> eventos;
-	private int quanEventos;
+
 	private static RepositorioEventos instance;
 
 	public RepositorioEventos() {
-		this.eventos = new ArrayList<Evento>(100);
-		this.quanEventos = 0;
+		this.eventos = new ArrayList<Evento>();
+
 	}
 
 	public static RepositorioEventos getInstance() {
@@ -26,14 +26,10 @@ public class RepositorioEventos implements IRepositorioEventos {
 		return eventos;
 	}
 
-	public int getQuantEventos() {
-		return quanEventos;
-	}
-
 	public int buscarIndiceNome(String nome) {
 		int i = 0;
 		boolean resposta = false;
-		while (resposta != true && i < this.quanEventos) {
+		while (resposta != true && i < this.eventos.size()) {
 			if (nome.equals(this.eventos.get(i).getNome())) {
 				resposta = true;
 			} else {
@@ -59,7 +55,6 @@ public class RepositorioEventos implements IRepositorioEventos {
 		if (eventos != null) {
 
 			this.eventos.add(even);
-			quanEventos++;
 
 		} else {
 			resposta = false;
@@ -72,7 +67,7 @@ public class RepositorioEventos implements IRepositorioEventos {
 
 		if (existe(nome)) {
 
-			this.eventos.remove(eventos.get(buscarIndiceNome(nome)));
+			this.eventos.remove(buscarEvento(nome));
 
 		}
 	}
@@ -80,7 +75,7 @@ public class RepositorioEventos implements IRepositorioEventos {
 	public boolean existe(String nome) {
 		boolean existe = false;
 		int i = this.buscarIndiceNome(nome);
-		if (i != quanEventos) {
+		if (i != this.eventos.size()) {
 			existe = true;
 		}
 

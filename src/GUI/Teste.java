@@ -34,7 +34,8 @@ public class Teste {
 			switch (cond) {
 			case '1':
 				System.out.println("Escolha uma opçao\n\n" + "1-Cadastrar administrador\n" + "2-Cadastrar cliente\n");
-				char menu1 = sc.next().charAt(0); sc.nextLine();
+				char menu1 = sc.next().charAt(0);
+				sc.nextLine();
 
 				switch (menu1) {
 				case '1':
@@ -199,6 +200,7 @@ public class Teste {
 						System.out.println("Digite sua senha: ");
 						senha3 = sc1.next();
 					} while (fachada.loginCliente(login3, senha3) != true);
+					fachada.buscarCliente(login3).setNext(0);
 					System.out.println(
 							"\nEscolha uma opçao\n\n" + "1-Buscar evento\n" + "2-Remover conta\n" + "s-sair\n");
 
@@ -212,16 +214,20 @@ public class Teste {
 
 						System.out.println("\n" + fachada.buscarEvento(busca));
 
-						System.out.println(fachada.buscarEvento(busca).getIngressos().getCodigo());
+						System.out.println("Codigo: " + fachada.buscarEvento(busca).getIngressos().getCodigo());
 
 						if (fachada.buscarEvento(busca).getLocal().getCapacidade() > 0) {
 
 							System.out.println("\nQuantidade de ingressos que deseja comprar :");
 							int quantIngressos = sc1.nextInt();
-							int aux = fachada.buscarEvento(busca).getLocal().getCapacidade();
 
-							fachada.buscarEvento(busca).getLocal().setCapacidade(aux - quantIngressos);
-							System.out.println("\n" + fachada.buscarEvento(busca));
+							fachada.venderIngrClien(quantIngressos, busca);
+
+							fachada.buscarCliente(login3).carrinho(quantIngressos,
+									fachada.buscarEvento(busca).getIngressos().getCodigo());
+
+							System.out.println("\nCarrinho: " + fachada.buscarCliente(login3).getIngressos().length
+									+ "\nCodigo:  " + fachada.buscarCliente(login3).getIngressos()[0]);
 
 							System.out.println(
 									"\nAgora escolha a forma de pagamento e obrigado por escolher a TerpTickets!");

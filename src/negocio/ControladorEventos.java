@@ -58,4 +58,13 @@ public class ControladorEventos implements IControladorEventos {
 		return this.repositorio.existe(nome);
 	}
 
+	public void venderIngrClien(int quantIngressos, String busca) {
+
+		int aux = repositorio.buscarEvento(busca).getLocal().getCapacidade();
+
+		repositorio.buscarEvento(busca).getLocal().setCapacidade(aux - quantIngressos);
+		System.out.println("\n" + repositorio.buscarEvento(busca));
+
+	}
+
 }
