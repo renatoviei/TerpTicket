@@ -231,6 +231,7 @@ public class Teste {
 
 							System.out.println(
 									"\nAgora escolha a forma de pagamento e obrigado por escolher a TerpTickets!");
+
 						} else {
 							System.out.println("\nIngressos esgotados!");
 						}

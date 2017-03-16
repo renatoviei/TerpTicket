@@ -1,6 +1,12 @@
 package beans;
 
-public class Local {
+import java.io.Serializable;
+
+public class Local implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String casaDeShow;
 	private String endereco;
 	private String dataHorario;

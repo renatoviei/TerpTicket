@@ -29,5 +29,11 @@ public interface IFachada {
 	abstract boolean loginCliente(String login, String senha);
 
 	abstract void venderIngrClien(int quantIngressos, String busca);
+	
+	abstract void salvarAdm();
+	
+	abstract void salvarCliente();
+	
+	abstract void salvarEventos();
 
 }

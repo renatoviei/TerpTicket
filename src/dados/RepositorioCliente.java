@@ -1,11 +1,22 @@
 package dados;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import beans.Cliente;
 
-public class RepositorioCliente implements IRepositorioCliente {
+public class RepositorioCliente implements IRepositorioCliente, Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private List<Cliente> usuarios;
 
 	private static RepositorioCliente instance;
@@ -17,13 +28,61 @@ public class RepositorioCliente implements IRepositorioCliente {
 
 	public static RepositorioCliente getInstance() {
 		if (instance == null) {
-			instance = new RepositorioCliente();
+			{
+				if (ler() == null) {
+					instance = new RepositorioCliente();
+				} else {
+					instance = (RepositorioCliente) ler();
+				}
+			}
+
 		}
 		return instance;
 	}
 
 	public List<Cliente> getUsuario() {
 		return usuarios;
+	}
+
+	
+	public void salvarCliente() {
+
+		try {
+			File f = new File("C:\\Users\\Renato\\git\\TerpTicket\\Arquivos\\RepositorioClien.dat");
+
+			FileOutputStream fos = new FileOutputStream(f);
+
+			ObjectOutputStream ous = new ObjectOutputStream(fos);
+
+			ous.writeObject(instance);
+
+			ous.close();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static RepositorioCliente ler() {
+		RepositorioCliente rep = null;
+		try {
+
+			File f = new File("C:\\Users\\Renato\\git\\TerpTicket\\Arquivos\\RepositorioClien.dat");
+
+			FileInputStream fis = new FileInputStream(f);
+
+			ObjectInputStream ois = new ObjectInputStream(fis);
+
+			Object o = ois.readObject();
+			if (o != null) {
+				rep = (RepositorioCliente) o;
+			}
+			ois.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return rep;
+
 	}
 
 	public int buscarIndiceCliente(String login) {
@@ -60,6 +119,7 @@ public class RepositorioCliente implements IRepositorioCliente {
 			resposta = false;
 
 		}
+		this.salvarCliente();
 		return resposta;
 	}
 
@@ -72,7 +132,7 @@ public class RepositorioCliente implements IRepositorioCliente {
 		} else {
 			resposta = false;
 		}
-
+		this.salvarCliente();
 		return resposta;
 	}
 

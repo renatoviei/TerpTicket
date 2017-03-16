@@ -67,4 +67,9 @@ public class ControladorEventos implements IControladorEventos {
 
 	}
 
+	public void salvarEventos() {
+
+		repositorio.salvarEventos();
+	}
+
 }

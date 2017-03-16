@@ -2,10 +2,21 @@ package dados;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 
 import beans.Administrador;
 
-public class RepositorioAdministrador implements IRepositorioAdm {
+public class RepositorioAdministrador implements IRepositorioAdm, Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private List<Administrador> usuarios;
 
 	private static RepositorioAdministrador instance;
@@ -17,13 +28,71 @@ public class RepositorioAdministrador implements IRepositorioAdm {
 
 	public static RepositorioAdministrador getInstance() {
 		if (instance == null) {
-			instance = new RepositorioAdministrador();
+			{
+				if (ler() == null) {
+					instance = new RepositorioAdministrador();
+				} else {
+					instance = (RepositorioAdministrador) ler();
+				}
+			}
+
 		}
 		return instance;
 	}
 
 	public List<Administrador> getUsuarioAdm() {
 		return usuarios;
+	}
+
+	public void salvarAdm() {
+
+		try {
+
+			FileOutputStream fos = new FileOutputStream(
+					"C:\\Users\\Renato\\git\\TerpTicket\\Arquivos\\RepositorioAdm.dat");
+
+			ObjectOutputStream ous = new ObjectOutputStream(fos);
+
+			ous.writeObject(instance);
+
+			ous.close();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static RepositorioAdministrador ler() {
+		RepositorioAdministrador rep = null;
+		try {
+
+			File f = new File("C:\\Users\\Renato\\git\\TerpTicket\\Arquivos\\RepositorioAdm.dat");
+
+			FileInputStream fis = new FileInputStream(f);
+
+			ObjectInputStream ois = new ObjectInputStream(fis);
+
+			Object o = ois.readObject();
+			if (o != null) {
+				rep = (RepositorioAdministrador) o;
+			}
+			
+			ois.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return rep;
+
+	}
+
+	public Administrador buscarAdm(String login) {
+		Administrador adm = null;
+		if (login != null) {
+			adm = this.usuarios.get(buscarIndiceLogin(login));
+
+		}
+		return adm;
+
 	}
 
 	public int buscarIndiceLogin(String login) {
@@ -40,16 +109,6 @@ public class RepositorioAdministrador implements IRepositorioAdm {
 
 	}
 
-	public Administrador buscarAdm(String login) {
-		Administrador adm = null;
-		if (login != null) {
-			adm = this.usuarios.get(buscarIndiceLogin(login));
-
-		}
-		return adm;
-
-	}
-
 	public boolean cadastrar(Administrador usuario) {
 		boolean resposta = true;
 		if (usuario != null) {
@@ -60,6 +119,7 @@ public class RepositorioAdministrador implements IRepositorioAdm {
 			resposta = false;
 
 		}
+		this.salvarAdm();
 		return resposta;
 	}
 
@@ -73,6 +133,7 @@ public class RepositorioAdministrador implements IRepositorioAdm {
 		} else {
 			resposta = false;
 		}
+		this.salvarAdm();
 		return resposta;
 	}
 

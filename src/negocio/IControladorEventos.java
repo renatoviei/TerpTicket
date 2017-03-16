@@ -4,14 +4,16 @@ import beans.Evento;
 
 public interface IControladorEventos {
 
-	public abstract boolean cadastrar(Evento event);
+	abstract boolean cadastrar(Evento event);
 
-	public abstract Evento buscarEvento(String nome);
+	abstract Evento buscarEvento(String nome);
 
-	public abstract void remover(String nome);
+	abstract void remover(String nome);
 
-	public abstract boolean existe(String nome);
+	abstract boolean existe(String nome);
 
-	public abstract void venderIngrClien(int quantIngressos, String busca);
+	abstract void venderIngrClien(int quantIngressos, String busca);
+
+	abstract void salvarEventos();
 
 }

@@ -11,5 +11,7 @@ public interface IRepositorioAdm {
 	boolean remover(String nome);
 
 	boolean existe(String nome);
+	
+	void salvarAdm();
 
 }

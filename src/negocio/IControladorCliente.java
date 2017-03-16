@@ -12,6 +12,8 @@ public interface IControladorCliente {
 
 	abstract boolean loginCliente(String login, String senha);
 	
+	abstract void salvarCliente();
+	
 
 
 }

@@ -11,4 +11,6 @@ public interface IRepositorioEventos {
 	void remover(String nome);
 
 	boolean existe(String nome);
+	
+	void salvarEventos();
 }

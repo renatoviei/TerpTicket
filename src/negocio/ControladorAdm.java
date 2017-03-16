@@ -76,5 +76,9 @@ public class ControladorAdm implements IControladorAdm {
 		}
 		return logado;
 	}
+	
+	public void salvarAdm(){
+		repositorio.salvarAdm();
+	}
 
 }

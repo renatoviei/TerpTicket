@@ -11,4 +11,6 @@ public interface IRepositorioCliente {
 	boolean remover(String login);
 
 	boolean existe(String nome);
+    
+	void salvarCliente(); 
 }

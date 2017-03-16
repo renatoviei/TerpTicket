@@ -11,5 +11,7 @@ public interface IControladorAdm {
 	abstract void remover(String login);
 
 	abstract boolean loginAdm(String login, String senha);
+	
+	abstract void salvarAdm();
 
 }

@@ -1,11 +1,22 @@
 package dados;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import beans.Evento;
 
-public class RepositorioEventos implements IRepositorioEventos {
+public class RepositorioEventos implements IRepositorioEventos, Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private List<Evento> eventos;
 
 	private static RepositorioEventos instance;
@@ -17,13 +28,60 @@ public class RepositorioEventos implements IRepositorioEventos {
 
 	public static RepositorioEventos getInstance() {
 		if (instance == null) {
-			instance = new RepositorioEventos();
+			{
+				if (ler() == null) {
+					instance = new RepositorioEventos();
+				} else {
+					instance = (RepositorioEventos) ler();
+				}
+			}
+
 		}
 		return instance;
 	}
 
 	public List<Evento> getEventos() {
 		return eventos;
+	}
+
+	public void salvarEventos() {
+
+		try {
+			File f = new File("C:\\Users\\Renato\\git\\TerpTicket\\Arquivos\\RepositorioEven.dat");
+
+			FileOutputStream fos = new FileOutputStream(f);
+
+			ObjectOutputStream ous = new ObjectOutputStream(fos);
+
+			ous.writeObject(instance);
+
+			ous.close();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static RepositorioEventos ler() {
+		RepositorioEventos rep = null;
+		try {
+
+			File f = new File("C:\\Users\\Renato\\git\\TerpTicket\\Arquivos\\RepositorioEven.dat");
+
+			FileInputStream fis = new FileInputStream(f);
+
+			ObjectInputStream ois = new ObjectInputStream(fis);
+
+			Object o = ois.readObject();
+			if (o != null) {
+				rep = (RepositorioEventos) o;
+			}
+			ois.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return rep;
+
 	}
 
 	public int buscarIndiceNome(String nome) {
@@ -60,6 +118,7 @@ public class RepositorioEventos implements IRepositorioEventos {
 			resposta = false;
 
 		}
+		this.salvarEventos();
 		return resposta;
 	}
 
@@ -70,6 +129,7 @@ public class RepositorioEventos implements IRepositorioEventos {
 			this.eventos.remove(buscarEvento(nome));
 
 		}
+		this.salvarEventos();
 	}
 
 	public boolean existe(String nome) {

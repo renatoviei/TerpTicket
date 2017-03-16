@@ -72,5 +72,10 @@ public class ControladorCliente implements IControladorCliente {
 		return logado;
 	}
 	
+	public void salvarCliente() {
+		
+		repositorio.salvarCliente();
+	}
+	
 	
 }

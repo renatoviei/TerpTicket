@@ -75,4 +75,16 @@ public class Fachada implements IFachada {
 		controladorEvento.venderIngrClien(quantIngressos, busca);
 	}
 
+	public void salvarAdm() {
+		controladorAdm.salvarAdm();
+	}
+
+	public void salvarCliente() {
+		controladorCliente.salvarCliente();
+	}
+
+	public void salvarEventos() {
+		controladorEvento.salvarEventos();
+	}
+
 }

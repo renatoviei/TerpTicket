@@ -1,10 +1,15 @@
 package beans;
 
+import java.io.Serializable;
 import java.util.Arrays;
 import beans.Ingresso;
 import beans.Local;
 
-public class Evento {
+public class Evento implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String nome;
 	private int preco;
 	private Local local;
