@@ -49,7 +49,7 @@ public class RepositorioAdministrador implements IRepositorioAdm, Serializable {
 		try {
 
 			FileOutputStream fos = new FileOutputStream(
-					"C:\\Users\\Renato\\git\\TerpTicket\\Arquivos\\RepositorioAdm.dat");
+					"Arquivos\\RepositorioAdm.dat");
 
 			ObjectOutputStream ous = new ObjectOutputStream(fos);
 
@@ -66,7 +66,7 @@ public class RepositorioAdministrador implements IRepositorioAdm, Serializable {
 		RepositorioAdministrador rep = null;
 		try {
 
-			File f = new File("C:\\Users\\Renato\\git\\TerpTicket\\Arquivos\\RepositorioAdm.dat");
+			File f = new File("Arquivos\\RepositorioAdm.dat");
 
 			FileInputStream fis = new FileInputStream(f);
 

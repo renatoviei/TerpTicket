@@ -4,11 +4,8 @@ import beans.Cliente;
 import dados.IRepositorioCliente;
 import dados.RepositorioCliente;
 
-import java.util.Scanner;
-
 public class ControladorCliente implements IControladorCliente {
 	private IRepositorioCliente repositorio;
-	private Scanner sc;
 
 	public ControladorCliente() {
 		this.repositorio = RepositorioCliente.getInstance();
@@ -41,16 +38,15 @@ public class ControladorCliente implements IControladorCliente {
 	}
 
 	public void remover(String login) {
-		sc = new Scanner(System.in);
+
 		boolean x = false;
 		while (x == false) {
-			System.out.println("Digite sua senha:");
-			String s = sc.nextLine();
+
 			Cliente aux = null;
 
 			aux = buscarCliente(login);
 
-			if (s.equals(aux.getSenha())) {
+			if (login.equals(aux.getLogin())) {
 				this.repositorio.remover(login);
 				x = true;
 				System.out.println("Cliente removido com sucesso!");
@@ -71,11 +67,10 @@ public class ControladorCliente implements IControladorCliente {
 		}
 		return logado;
 	}
-	
+
 	public void salvarCliente() {
-		
+
 		repositorio.salvarCliente();
 	}
-	
-	
+
 }

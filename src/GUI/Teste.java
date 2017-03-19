@@ -17,7 +17,7 @@ public class Teste {
 	private static Scanner sc2;
 
 	public static void main(String[] args) {
-
+		int termino = 1;
 		char cond = 0;
 		sc = new Scanner(System.in);
 		sc1 = new Scanner(System.in);
@@ -109,87 +109,91 @@ public class Teste {
 						senha = sc1.next();
 					} while (fachada.loginAdm(login, senha) != true);
 
-					System.out.println("\nEscolha uma opçao\n" + "\n1-Criar evento\n" + "2-Remover evento\n"
-							+ "3-Remover conta\n");
-
-					char menu21 = sc.next().charAt(0);
-
-					switch (menu21) {
-					case '1':
-						System.out.println("Digite o nome do evento: ");
-
-						String nomeDoEvento = sc2.nextLine();
-						sc1.nextLine();
-
-						System.out.println("Digite o preço do ingresso: ");
-						int preco = sc1.nextInt();
-						sc1.nextLine();
-
-						System.out.println("Digite o nome da casa de shows: ");
-						String casaDeShow = sc1.nextLine();
-
-						System.out.println("Digite o endereço da casa de shows: ");
-						String endereço = sc1.nextLine();
-
-						System.out.println("Digite a data e horário do evento no seguinte modelo 'DD/MM/AA HH:MM': ");
-						String dataHorario = sc1.nextLine();
-
-						System.out.println("Digite a capacidade de lotação da casa: ");
-						int capacidade = sc1.nextInt();
-						sc1.nextLine();
-
-						Local local = new Local(casaDeShow, endereço, dataHorario, capacidade);
-
-						System.out.println("Digite a quantidade de bandas: ");
-						int quantBandas = sc1.nextInt();
-						sc1.nextLine();
-
-						String[] bandas = new String[quantBandas];
-
-						System.out.println("Digite os nomes das bandas: ");
-						for (int i = 0; i < bandas.length; i++) {
-							bandas[i] = sc1.nextLine();
-
-						}
-						Random radom = new Random();
-						long codigo = 0;
-						for (int i = 0; i < 10; i++) {
-							codigo = radom.nextInt(1000000001);
-							if (codigo >= 99999999) {
-								break;
-							}
-						}
-						Ingresso ingressos = new Ingresso(codigo);
-
-						Evento evento = new Evento(nomeDoEvento, preco, local, bandas, ingressos);
-
-						fachada.cadastarEvento(evento);
-
-						System.out.println(fachada.buscarEvento(nomeDoEvento));
-
-						System.out.println(
-								"Código do ingresso: " + fachada.buscarEvento(nomeDoEvento).getIngressos().getCodigo());
-
-						break;
-					case '2':
-
-						System.out.println("Digite o nome do evento: ");
-						String nome1 = sc1.nextLine();
-						sc1.nextLine();
-
-						fachada.removerEvento(nome1);
-
-						break;
-					case '3':
-						fachada.removerAdm(login);
-
-						break;
-
-					default:
-						System.out.println("\nOpção invalida!");
+					if (fachada.loginAdm(login, senha) == true) {
+						termino--;
 					}
 
+					while (termino == 0) {
+						System.out.println("\nEscolha uma opçao\n" + "\n1-Criar evento\n" + "2-Remover evento\n"
+								+ "3-Remover conta\n" + "4-sair");
+
+						char menu21 = sc.next().charAt(0);
+
+						switch (menu21) {
+						case '1':
+							System.out.println("Digite o nome do evento: ");
+
+							String nomeDoEvento = sc2.nextLine();
+							sc1.nextLine();
+
+							System.out.println("Digite o preço do ingresso: ");
+							int preco = sc1.nextInt();
+							sc1.nextLine();
+
+							System.out.println("Digite o nome da casa de shows: ");
+							String casaDeShow = sc1.nextLine();
+
+							System.out.println("Digite o endereço da casa de shows: ");
+							String endereço = sc1.nextLine();
+
+							System.out
+									.println("Digite a data e horário do evento no seguinte modelo 'DD/MM/AA HH:MM': ");
+							String dataHorario = sc1.nextLine();
+
+							System.out.println("Digite a capacidade de lotação da casa: ");
+							int capacidade = sc1.nextInt();
+							sc1.nextLine();
+
+							Local local = new Local(casaDeShow, endereço, dataHorario, capacidade);
+
+							String bandas = new String();
+
+							System.out.println("Digite os nomes das bandas: ");
+
+							bandas = sc1.nextLine();
+
+							Random radom = new Random();
+							long codigo = 0;
+							for (int i = 0; i < 10; i++) {
+								codigo = radom.nextInt(1000000001);
+								if (codigo >= 99999999) {
+									break;
+								}
+							}
+							Ingresso ingressos = new Ingresso(codigo);
+
+							Evento evento = new Evento(nomeDoEvento, preco, local, bandas, ingressos);
+
+							fachada.cadastarEvento(evento);
+
+							System.out.println(fachada.buscarEvento(nomeDoEvento));
+
+							System.out.println("Código do ingresso: "
+									+ fachada.buscarEvento(nomeDoEvento).getIngressos().getCodigo());
+
+							break;
+						case '2':
+
+							System.out.println("Digite o nome do evento: ");
+							sc1.nextLine();
+							String nome1 = sc1.nextLine();
+
+							fachada.removerEvento(nome1);
+
+							break;
+						case '3':
+							fachada.removerAdm(login);
+
+						case '4':
+							termino++;
+							break;
+						default:
+							System.out.println("\nOpção invalida!");
+
+						}
+					}
 					break;
+
 				case '2':
 					String login3;
 					String senha3;
@@ -202,7 +206,7 @@ public class Teste {
 					} while (fachada.loginCliente(login3, senha3) != true);
 					fachada.buscarCliente(login3).setNext(0);
 					System.out.println(
-							"\nEscolha uma opçao\n\n" + "1-Buscar evento\n" + "2-Remover conta\n" + "s-sair\n");
+							"\nEscolha uma opçao\n\n" + "1-Buscar evento\n" + "2-Remover conta\n" + "3-sair\n");
 
 					char menu3 = sc.next().charAt(0);
 
@@ -241,7 +245,7 @@ public class Teste {
 						fachada.removerCliente(login3);
 
 						break;
-					case 's':
+					case '3':
 						break;
 					default:
 						System.out.println("Opção invalida!");
@@ -253,6 +257,7 @@ public class Teste {
 					System.out.println("\nOpção inválida");
 
 				}
+
 			case '3':
 				sc.nextLine();
 				break;

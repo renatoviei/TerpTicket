@@ -48,7 +48,7 @@ public class RepositorioCliente implements IRepositorioCliente, Serializable {
 	public void salvarCliente() {
 
 		try {
-			File f = new File("C:\\Users\\Renato\\git\\TerpTicket\\Arquivos\\RepositorioClien.dat");
+			File f = new File("Arquivos\\RepositorioClien.dat");
 
 			FileOutputStream fos = new FileOutputStream(f);
 
@@ -67,7 +67,7 @@ public class RepositorioCliente implements IRepositorioCliente, Serializable {
 		RepositorioCliente rep = null;
 		try {
 
-			File f = new File("C:\\Users\\Renato\\git\\TerpTicket\\Arquivos\\RepositorioClien.dat");
+			File f = new File("C:Arquivos\\RepositorioClien.dat");
 
 			FileInputStream fis = new FileInputStream(f);
 

@@ -47,7 +47,7 @@ public class RepositorioEventos implements IRepositorioEventos, Serializable {
 	public void salvarEventos() {
 
 		try {
-			File f = new File("C:\\Users\\Renato\\git\\TerpTicket\\Arquivos\\RepositorioEven.dat");
+			File f = new File("Arquivos\\RepositorioEven.dat");
 
 			FileOutputStream fos = new FileOutputStream(f);
 
@@ -66,7 +66,7 @@ public class RepositorioEventos implements IRepositorioEventos, Serializable {
 		RepositorioEventos rep = null;
 		try {
 
-			File f = new File("C:\\Users\\Renato\\git\\TerpTicket\\Arquivos\\RepositorioEven.dat");
+			File f = new File("Arquivos\\RepositorioEven.dat");
 
 			FileInputStream fis = new FileInputStream(f);
 

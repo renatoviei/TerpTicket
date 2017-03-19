@@ -4,11 +4,8 @@ import beans.Administrador;
 import dados.IRepositorioAdm;
 import dados.RepositorioAdministrador;
 
-import java.util.Scanner;
-
 public class ControladorAdm implements IControladorAdm {
 	private IRepositorioAdm repositorio;
-	private Scanner sc;
 
 	public ControladorAdm() {
 		this.repositorio = RepositorioAdministrador.getInstance();
@@ -46,14 +43,12 @@ public class ControladorAdm implements IControladorAdm {
 		boolean x = false;
 
 		while (x == false) {
-			sc = new Scanner(System.in);
-			System.out.println("Digite sua senha:");
-			String s = sc.next();
+
 			Administrador aux = null;
 
 			aux = buscarAdm(login);
 
-			if (s.equals(aux.getSenha())) {
+			if (login.equals(aux.getLogin())) {
 				this.repositorio.remover(login);
 				x = true;
 				System.out.println("Administrador removido");
@@ -76,8 +71,8 @@ public class ControladorAdm implements IControladorAdm {
 		}
 		return logado;
 	}
-	
-	public void salvarAdm(){
+
+	public void salvarAdm() {
 		repositorio.salvarAdm();
 	}
 

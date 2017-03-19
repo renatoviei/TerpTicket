@@ -64,7 +64,7 @@ public class ControladorEventos implements IControladorEventos {
 
 		repositorio.buscarEvento(busca).getLocal().setCapacidade(aux - quantIngressos);
 		System.out.println("\n" + repositorio.buscarEvento(busca));
-
+        salvarEventos();
 	}
 
 	public void salvarEventos() {
