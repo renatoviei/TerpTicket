@@ -33,6 +33,7 @@ public class TelaEspacoCliente extends JFrame implements ActionListener {
 			busca.setLocationRelativeTo(null);
 			busca.setVisible(true);
 			janela.dispose();
+			busca.dispose();
 
 		} else if (e.getSource() == botaoRemConta) {
 			TelaRemoveConClien remove = new TelaRemoveConClien();
@@ -40,6 +41,7 @@ public class TelaEspacoCliente extends JFrame implements ActionListener {
 			remove.setLocationRelativeTo(null);
 			remove.setVisible(true);
 			janela.dispose();
+			remove.dispose();
 
 		} else {
 			TelaMenuInicial menuInicial = new TelaMenuInicial();
@@ -47,6 +49,7 @@ public class TelaEspacoCliente extends JFrame implements ActionListener {
 			menuInicial.setLocationRelativeTo(null);
 			menuInicial.setVisible(true);
 			janela.dispose();
+			menuInicial.dispose();
 		}
 
 	}

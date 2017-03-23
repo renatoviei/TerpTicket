@@ -48,6 +48,7 @@ public class TelaRemoveConClien extends JFrame implements ActionListener {
 				menuInicial.setLocationRelativeTo(null);
 				menuInicial.setVisible(true);
 				janela.dispose();
+				menuInicial.dispose();
 			}else{
 				JOptionPane.showMessageDialog(null, "Login ou senha estão incorretos");
 			}
@@ -57,6 +58,7 @@ public class TelaRemoveConClien extends JFrame implements ActionListener {
 			espaco.setLocationRelativeTo(null);
 			espaco.setVisible(true);
 			janela.dispose();
+			espaco.dispose();
 		}
 
 	}

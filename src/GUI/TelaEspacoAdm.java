@@ -35,25 +35,28 @@ public class TelaEspacoAdm extends JFrame implements ActionListener {
 			cEven.setLocationRelativeTo(null);
 			cEven.setVisible(true);
 			janela.dispose();
+			cEven.dispose();
 		} else if (e.getSource() == botaoRemEven) {
 			TelaRemoveEven remove = new TelaRemoveEven();
 			remove.setResizable(false);
 			remove.setLocationRelativeTo(null);
 			remove.setVisible(true);
 			janela.dispose();
+			remove.dispose();
 		} else if (e.getSource() == botaoSRemCon) {
 			TelaRemoveConAdm remove = new TelaRemoveConAdm();
 			remove.setResizable(false);
 			remove.setLocationRelativeTo(null);
 			remove.setVisible(true);
 			janela.dispose();
-
+			remove.dispose();
 		} else {
 			TelaMenuInicial menuInicial = new TelaMenuInicial();
 			menuInicial.setResizable(false);
 			menuInicial.setLocationRelativeTo(null);
 			menuInicial.setVisible(true);
 			janela.dispose();
+			menuInicial.dispose();
 		}
 
 	}

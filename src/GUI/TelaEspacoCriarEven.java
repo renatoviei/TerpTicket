@@ -67,6 +67,7 @@ public class TelaEspacoCriarEven extends JFrame implements ActionListener {
 				espaco.setLocationRelativeTo(null);
 				espaco.setVisible(true);
 				janela.dispose();
+				espaco.dispose();
 			}
 		} else {
 			TelaEspacoAdm espaco = new TelaEspacoAdm();
@@ -74,6 +75,7 @@ public class TelaEspacoCriarEven extends JFrame implements ActionListener {
 			espaco.setLocationRelativeTo(null);
 			espaco.setVisible(true);
 			janela.dispose();
+			espaco.dispose();
 		}
 
 	}

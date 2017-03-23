@@ -37,6 +37,7 @@ public class TelaMenuInicial extends JFrame implements ActionListener {
 			telaC.setLocationRelativeTo(null);
 			telaC.setVisible(true);
 			janela.dispose();
+			telaC.dispose();
 
 		} else {
 			TelaL1 telaL = new TelaL1();
@@ -44,6 +45,7 @@ public class TelaMenuInicial extends JFrame implements ActionListener {
 			telaL.setLocationRelativeTo(null);
 			telaL.setVisible(true);
 			janela.dispose();
+			telaL.dispose();
 
 		}
 

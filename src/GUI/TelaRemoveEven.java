@@ -42,6 +42,7 @@ public class TelaRemoveEven extends JFrame implements ActionListener {
 				espaco.setLocationRelativeTo(null);
 				espaco.setVisible(true);
 				janela.dispose();
+				espaco.dispose();
 			}else{
 				JOptionPane.showMessageDialog(null, "Evento não existe ou nome "
 						+ "está incorreto");
@@ -52,6 +53,7 @@ public class TelaRemoveEven extends JFrame implements ActionListener {
 			espaco.setLocationRelativeTo(null);
 			espaco.setVisible(true);
 			janela.dispose();
+			espaco.dispose();
 		}
 
 	}

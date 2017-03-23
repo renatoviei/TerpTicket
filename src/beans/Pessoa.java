@@ -2,7 +2,7 @@ package beans;
 
 import java.io.Serializable;
 
-public class Pessoa implements Serializable {
+public abstract class Pessoa implements Serializable {
 	/**
 	 * 
 	 */

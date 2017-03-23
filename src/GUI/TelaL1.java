@@ -33,12 +33,14 @@ public class TelaL1 extends JFrame implements ActionListener {
 			loginAdm.setLocationRelativeTo(null);
 			loginAdm.setVisible(true);
 			janela.dispose();
+			loginAdm.dispose();
 		} else if (e.getSource() == botaoLClien) {
 			TelaLoginCliente loginClien = new TelaLoginCliente();
 			loginClien.setResizable(false);
 			loginClien.setLocationRelativeTo(null);
 			loginClien.setVisible(true);
 			janela.dispose();
+			loginClien.dispose();
 
 		} else {
 			TelaMenuInicial menuInicial = new TelaMenuInicial();
@@ -46,6 +48,7 @@ public class TelaL1 extends JFrame implements ActionListener {
 			menuInicial.setLocationRelativeTo(null);
 			menuInicial.setVisible(true);
 			janela.dispose();
+			menuInicial.dispose();
 		}
 
 	}

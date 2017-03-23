@@ -57,6 +57,7 @@ public class TelaCadastroCliente extends JFrame implements ActionListener {
 				menuInicial.setLocationRelativeTo(null);
 				menuInicial.setVisible(true);
 				janela.dispose();
+				menuInicial.dispose();
 			}
 		} else {
 			TelaC1 telaC1 = new TelaC1();
@@ -64,6 +65,7 @@ public class TelaCadastroCliente extends JFrame implements ActionListener {
 			telaC1.setLocationRelativeTo(null);
 			telaC1.setVisible(true);
 			janela.dispose();
+			telaC1.dispose();
 		}
 
 	}

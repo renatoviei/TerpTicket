@@ -40,6 +40,7 @@ public class TelaLoginCliente extends JFrame implements ActionListener {
 				espaco.setLocationRelativeTo(null);
 				espaco.setVisible(true);
 				janela.dispose();
+				espaco.dispose();
 			} else {
 				JOptionPane.showMessageDialog(null, "LOGIN NÃO REALIZADO. CONTA NAO EXISTE!");
 			}
@@ -50,6 +51,7 @@ public class TelaLoginCliente extends JFrame implements ActionListener {
 			telaL1.setLocationRelativeTo(null);
 			telaL1.setVisible(true);
 			janela.dispose();
+			telaL1.dispose();
 		}
 
 	}

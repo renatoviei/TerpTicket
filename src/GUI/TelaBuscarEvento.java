@@ -136,6 +136,7 @@ public class TelaBuscarEvento extends JFrame implements ActionListener {
 					espaco.setLocationRelativeTo(null);
 					espaco.setVisible(true);
 					janela.dispose();
+					espaco.dispose();
 				} else {
 					JOptionPane.showMessageDialog(null, "Ingressos insuficientes, " + "digite uma quantidade menor!");
 				}
@@ -147,6 +148,7 @@ public class TelaBuscarEvento extends JFrame implements ActionListener {
 				espaco.setLocationRelativeTo(null);
 				espaco.setVisible(true);
 				janela.dispose();
+				espaco.dispose();
 			}
 
 		} else {
@@ -156,6 +158,7 @@ public class TelaBuscarEvento extends JFrame implements ActionListener {
 			espaco.setLocationRelativeTo(null);
 			espaco.setVisible(true);
 			janela.dispose();
+			espaco.dispose();
 		}
 
 	}

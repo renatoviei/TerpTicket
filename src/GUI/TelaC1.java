@@ -34,6 +34,7 @@ public class TelaC1 extends JFrame implements ActionListener {
 			telaCAdm.setLocationRelativeTo(null);
 			telaCAdm.setVisible(true);
 			janela.dispose();
+			telaCAdm.dispose();
 
 		} else if (e.getSource() == botaoCClien) {
 			TelaCadastroCliente telaCClien = new TelaCadastroCliente();
@@ -41,6 +42,7 @@ public class TelaC1 extends JFrame implements ActionListener {
 			telaCClien.setLocationRelativeTo(null);
 			telaCClien.setVisible(true);
 			janela.dispose();
+			telaCClien.dispose();
 
 		} else {
 			TelaMenuInicial menuInicial = new TelaMenuInicial();
@@ -48,6 +50,7 @@ public class TelaC1 extends JFrame implements ActionListener {
 			menuInicial.setLocationRelativeTo(null);
 			menuInicial.setVisible(true);
 			janela.dispose();
+			menuInicial.dispose();
 		}
 
 	}
