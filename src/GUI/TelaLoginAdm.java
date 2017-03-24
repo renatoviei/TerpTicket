@@ -11,6 +11,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import negocio.Fachada;
@@ -22,13 +23,13 @@ public class TelaLoginAdm extends JFrame implements ActionListener {
 		 */
 	private static final long serialVersionUID = 1L;
 	private JTextField caixaLogin = new JTextField(50);
-	private JTextField caixaSenha = new JTextField(50);
+	private JPasswordField caixaSenha = new JPasswordField(50);
 	JButton botaoEntra = new JButton("Entrar");
 	JButton botaoVolta = new JButton("Voltar");
 
 	ImageIcon imagem = new ImageIcon(getClass().getResource("Logins.png"));
 	JLabel label = new JLabel(imagem);
-	private JFrame janela;
+	
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -39,8 +40,8 @@ public class TelaLoginAdm extends JFrame implements ActionListener {
 				espaco.setResizable(false);
 				espaco.setLocationRelativeTo(null);
 				espaco.setVisible(true);
-				janela.dispose();
-				espaco.dispose();
+				dispose();
+				
 			} else {
 				JOptionPane.showMessageDialog(null, "LOGIN NÃO REALIZADO. CONTA NAO EXISTE!");
 			}
@@ -50,8 +51,8 @@ public class TelaLoginAdm extends JFrame implements ActionListener {
 			telaL1.setResizable(false);
 			telaL1.setLocationRelativeTo(null);
 			telaL1.setVisible(true);
-			janela.dispose();
-			telaL1.dispose();
+			dispose();
+			
 		}
 
 	}
@@ -61,16 +62,16 @@ public class TelaLoginAdm extends JFrame implements ActionListener {
 		botaoEntra.addActionListener(this);
 		botaoVolta.addActionListener(this);
 
-		janela = new JFrame("TerpTickets");
-		janela.setSize(500, 400);
-		janela.setVisible(true);
-		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		janela.setLocationRelativeTo(null);
-		janela.setResizable(false);
+		
+		setSize(500, 400);
+		setVisible(true);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setLocationRelativeTo(null);
+		setResizable(false);
 
 		JPanel painelPrincipal = new JPanel();
 
-		janela.add(painelPrincipal);
+		add(painelPrincipal);
 
 		painelPrincipal.setLayout(null);
 

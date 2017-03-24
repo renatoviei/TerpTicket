@@ -25,7 +25,7 @@ public class TelaMenuInicial extends JFrame implements ActionListener {
 
 	JLabel label = new JLabel(imagem);
 
-	private JFrame janela;
+	
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -36,16 +36,16 @@ public class TelaMenuInicial extends JFrame implements ActionListener {
 			telaC.setResizable(false);
 			telaC.setLocationRelativeTo(null);
 			telaC.setVisible(true);
-			janela.dispose();
-			telaC.dispose();
+			dispose();
+			
 
 		} else {
 			TelaL1 telaL = new TelaL1();
 			telaL.setResizable(false);
 			telaL.setLocationRelativeTo(null);
 			telaL.setVisible(true);
-			janela.dispose();
-			telaL.dispose();
+			dispose();
+			
 
 		}
 
@@ -57,15 +57,15 @@ public class TelaMenuInicial extends JFrame implements ActionListener {
 		botaoLogar.addActionListener(this);
 		botaoSair.addActionListener(this);
 
-		janela = new JFrame("TerpTickets");
-		janela.setSize(500, 400);
-		janela.setVisible(true);
-		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		janela.setLocationRelativeTo(null);
-		janela.setResizable(false);
+		
+		setSize(500, 400);
+		setVisible(true);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setLocationRelativeTo(null);
+		setResizable(false);
 
 		JPanel painelPrincipal = new JPanel();
-		janela.add(painelPrincipal);
+		add(painelPrincipal);
 
 		painelPrincipal.setLayout(null);
 

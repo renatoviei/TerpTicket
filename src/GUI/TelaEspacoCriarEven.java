@@ -41,7 +41,7 @@ public class TelaEspacoCriarEven extends JFrame implements ActionListener {
 	ImageIcon imagem = new ImageIcon(getClass().getResource("Cadastros_Busca.png"));
 
 	JLabel label = new JLabel(imagem);
-	private JFrame janela;
+	
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -66,16 +66,16 @@ public class TelaEspacoCriarEven extends JFrame implements ActionListener {
 				espaco.setResizable(false);
 				espaco.setLocationRelativeTo(null);
 				espaco.setVisible(true);
-				janela.dispose();
-				espaco.dispose();
+				dispose();
+				
 			}
 		} else {
 			TelaEspacoAdm espaco = new TelaEspacoAdm();
 			espaco.setResizable(false);
 			espaco.setLocationRelativeTo(null);
 			espaco.setVisible(true);
-			janela.dispose();
-			espaco.dispose();
+			dispose();
+			
 		}
 
 	}
@@ -85,16 +85,16 @@ public class TelaEspacoCriarEven extends JFrame implements ActionListener {
 		botaoCriar.addActionListener(this);
 		botaoVolta.addActionListener(this);
 
-		janela = new JFrame("TerpTickets");
-		janela.setSize(500, 400);
-		janela.setVisible(true);
-		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		janela.setLocationRelativeTo(null);
-		janela.setResizable(false);
+		
+		setSize(500, 400);
+		setVisible(true);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setLocationRelativeTo(null);
+		setResizable(false);
 
 		JPanel painelPrincipal = new JPanel();
 
-		janela.add(painelPrincipal);
+		add(painelPrincipal);
 
 		painelPrincipal.setLayout(null);
 

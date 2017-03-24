@@ -24,7 +24,7 @@ public class TelaC1 extends JFrame implements ActionListener {
 	ImageIcon imagem = new ImageIcon(getClass().getResource("Espaço.png"));
 
 	JLabel label = new JLabel(imagem);
-	private JFrame janela;
+	
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -33,24 +33,24 @@ public class TelaC1 extends JFrame implements ActionListener {
 			telaCAdm.setResizable(false);
 			telaCAdm.setLocationRelativeTo(null);
 			telaCAdm.setVisible(true);
-			janela.dispose();
-			telaCAdm.dispose();
+			dispose();
+			
 
 		} else if (e.getSource() == botaoCClien) {
 			TelaCadastroCliente telaCClien = new TelaCadastroCliente();
 			telaCClien.setResizable(false);
 			telaCClien.setLocationRelativeTo(null);
 			telaCClien.setVisible(true);
-			janela.dispose();
-			telaCClien.dispose();
+			dispose();
+			
 
 		} else {
 			TelaMenuInicial menuInicial = new TelaMenuInicial();
 			menuInicial.setResizable(false);
 			menuInicial.setLocationRelativeTo(null);
 			menuInicial.setVisible(true);
-			janela.dispose();
-			menuInicial.dispose();
+			dispose();
+			
 		}
 
 	}
@@ -61,15 +61,15 @@ public class TelaC1 extends JFrame implements ActionListener {
 		botaoCClien.addActionListener(this);
 		botaoVolta.addActionListener(this);
 
-		janela = new JFrame("TerpTickets");
-		janela.setSize(500, 400);
-		janela.setVisible(true);
-		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		janela.setLocationRelativeTo(null);
-		janela.setResizable(false);
+		
+		setSize(500, 400);
+		setVisible(true);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setLocationRelativeTo(null);
+		setResizable(false);
 
 		JPanel painelPrincipal = new JPanel();
-		janela.add(painelPrincipal);
+		add(painelPrincipal);
 
 		painelPrincipal.setLayout(null);
 

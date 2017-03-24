@@ -39,7 +39,7 @@ public class TelaBuscarEvento extends JFrame implements ActionListener {
 	ImageIcon imagem = new ImageIcon(getClass().getResource("Cadastros_Busca.png"));
 
 	JLabel label = new JLabel(imagem);
-	private JFrame janela;
+	
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -135,8 +135,8 @@ public class TelaBuscarEvento extends JFrame implements ActionListener {
 					espaco.setResizable(false);
 					espaco.setLocationRelativeTo(null);
 					espaco.setVisible(true);
-					janela.dispose();
-					espaco.dispose();
+					dispose();
+					
 				} else {
 					JOptionPane.showMessageDialog(null, "Ingressos insuficientes, " + "digite uma quantidade menor!");
 				}
@@ -147,8 +147,8 @@ public class TelaBuscarEvento extends JFrame implements ActionListener {
 				espaco.setResizable(false);
 				espaco.setLocationRelativeTo(null);
 				espaco.setVisible(true);
-				janela.dispose();
-				espaco.dispose();
+				dispose();
+				
 			}
 
 		} else {
@@ -157,8 +157,8 @@ public class TelaBuscarEvento extends JFrame implements ActionListener {
 			espaco.setResizable(false);
 			espaco.setLocationRelativeTo(null);
 			espaco.setVisible(true);
-			janela.dispose();
-			espaco.dispose();
+			dispose();
+			
 		}
 
 	}
@@ -169,16 +169,16 @@ public class TelaBuscarEvento extends JFrame implements ActionListener {
 		botaoVolta.addActionListener(this);
 		botaoComprar.addActionListener(this);
 
-		janela = new JFrame("TerpTickets");
-		janela.setSize(500, 400);
-		janela.setVisible(true);
-		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		janela.setLocationRelativeTo(null);
-		janela.setResizable(false);
+		
+		setSize(500, 400);
+		setVisible(true);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setLocationRelativeTo(null);
+		setResizable(false);
 
 		JPanel painelPrincipal = new JPanel();
 
-		janela.add(painelPrincipal);
+		add(painelPrincipal);
 
 		painelPrincipal.setLayout(null);
 

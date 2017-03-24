@@ -11,6 +11,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import beans.Administrador;
@@ -23,13 +24,13 @@ public class TelaRemoveConAdm extends JFrame implements ActionListener {
 		 */
 	private static final long serialVersionUID = 1L;
 	private JTextField caixaLogin = new JTextField(50);
-	private JTextField caixaSenha = new JTextField(50);
+	private JPasswordField caixaSenha = new JPasswordField(50);
 
 	JButton botaoRemover = new JButton("Remover");
 	JButton botaoVolta = new JButton("Voltar");
 	ImageIcon imagem = new ImageIcon(getClass().getResource("Remover.png"));
 	JLabel label = new JLabel(imagem);
-	private JFrame janela;
+	
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -47,8 +48,8 @@ public class TelaRemoveConAdm extends JFrame implements ActionListener {
 				menuInicial.setResizable(false);
 				menuInicial.setLocationRelativeTo(null);
 				menuInicial.setVisible(true);
-				janela.dispose();
-				menuInicial.dispose();
+				dispose();
+				
 			}else{
 				JOptionPane.showMessageDialog(null, "Login ou senha estão incorretos");
 			}
@@ -57,8 +58,8 @@ public class TelaRemoveConAdm extends JFrame implements ActionListener {
 			espaco.setResizable(false);
 			espaco.setLocationRelativeTo(null);
 			espaco.setVisible(true);
-			janela.dispose();
-			espaco.dispose();
+			dispose();
+			
 		}
 
 	}
@@ -68,16 +69,16 @@ public class TelaRemoveConAdm extends JFrame implements ActionListener {
 		botaoRemover.addActionListener(this);
 		botaoVolta.addActionListener(this);
 
-		janela = new JFrame("TerpTickets");
-		janela.setSize(500, 400);
-		janela.setVisible(true);
-		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		janela.setLocationRelativeTo(null);
-		janela.setResizable(false);
+		
+		setSize(500, 400);
+		setVisible(true);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setLocationRelativeTo(null);
+		setResizable(false);
 
 		JPanel painelPrincipal = new JPanel();
 
-		janela.add(painelPrincipal);
+		add(painelPrincipal);
 
 		painelPrincipal.setLayout(null);
 

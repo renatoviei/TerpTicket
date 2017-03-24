@@ -11,9 +11,11 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import beans.Administrador;
+import beans.Pessoa;
 import negocio.Fachada;
 
 public class TelaCadastroAdm extends JFrame implements ActionListener {
@@ -26,7 +28,7 @@ public class TelaCadastroAdm extends JFrame implements ActionListener {
 	private JTextField caixaIdade = new JTextField(50);
 	private JTextField caixaEmail = new JTextField(50);
 	private JTextField caixaLogin = new JTextField(50);
-	private JTextField caixaSenha = new JTextField(50);
+	private JPasswordField caixaSenha = new JPasswordField(50);
 
 	JButton botaoConfirma = new JButton("Confirmar");
 	JButton botaoVolta = new JButton("Voltar");
@@ -34,7 +36,7 @@ public class TelaCadastroAdm extends JFrame implements ActionListener {
 	ImageIcon imagem = new ImageIcon(getClass().getResource("Cadastros_Busca.png"));
 
 	JLabel label = new JLabel(imagem);
-	private JFrame janela;
+	
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -45,12 +47,12 @@ public class TelaCadastroAdm extends JFrame implements ActionListener {
 			} else {
 				int i = Integer.parseInt(caixaIdade.getText());
 				if(i < 18){
-					JOptionPane.showMessageDialog(null, "Desculpe, você é de menor, não pode se cadastrar");
+					JOptionPane.showMessageDialog(null, "Desculpe, você tem menos de 18, não pode se cadastrar");
 				}else{
-				Administrador adm = new Administrador(caixaNome.getText(), caixaEmail.getText(), caixaLogin.getText(),
+				Pessoa adm = new Administrador(caixaNome.getText(), caixaEmail.getText(), caixaLogin.getText(),
 						caixaSenha.getText(), i);
 				Fachada fachada = Fachada.getInstance();
-				fachada.cadastarAdm(adm);
+				fachada.cadastarAdm((Administrador)adm);
 
 				JOptionPane.showMessageDialog(null, "Administrador cadastrado com sucesso");
 
@@ -58,8 +60,8 @@ public class TelaCadastroAdm extends JFrame implements ActionListener {
 				menuInicial.setResizable(false);
 				menuInicial.setLocationRelativeTo(null);
 				menuInicial.setVisible(true);
-				janela.dispose();
-				menuInicial.dispose();
+				dispose();
+			
 				}
 			}
 		} else {
@@ -67,8 +69,8 @@ public class TelaCadastroAdm extends JFrame implements ActionListener {
 			telaC1.setResizable(false);
 			telaC1.setLocationRelativeTo(null);
 			telaC1.setVisible(true);
-			janela.dispose();
-			telaC1.dispose();
+			dispose();
+			
 		}
 
 	}
@@ -78,16 +80,16 @@ public class TelaCadastroAdm extends JFrame implements ActionListener {
 		botaoConfirma.addActionListener(this);
 		botaoVolta.addActionListener(this);
 
-		janela = new JFrame("TerpTickets");
-		janela.setSize(500, 400);
-		janela.setVisible(true);
-		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		janela.setLocationRelativeTo(null);
-		janela.setResizable(false);
+		
+		setSize(500, 400);
+		setVisible(true);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setLocationRelativeTo(null);
+		setResizable(false);
 
 		JPanel painelPrincipal = new JPanel();
 
-		janela.add(painelPrincipal);
+		add(painelPrincipal);
 
 		painelPrincipal.setLayout(null);
 

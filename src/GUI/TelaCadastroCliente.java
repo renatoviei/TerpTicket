@@ -11,9 +11,11 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import beans.Cliente;
+import beans.Pessoa;
 import negocio.Fachada;
 
 public class TelaCadastroCliente extends JFrame implements ActionListener {
@@ -26,7 +28,7 @@ public class TelaCadastroCliente extends JFrame implements ActionListener {
 	private JTextField caixaIdade = new JTextField(50);
 	private JTextField caixaEmail = new JTextField(50);
 	private JTextField caixaLogin = new JTextField(50);
-	private JTextField caixaSenha = new JTextField(50);
+	private JPasswordField caixaSenha = new JPasswordField(50);
 
 	JButton botaoConfirma = new JButton("Confirmar");
 	JButton botaoVolta = new JButton("Voltar");
@@ -34,7 +36,7 @@ public class TelaCadastroCliente extends JFrame implements ActionListener {
 	ImageIcon imagem = new ImageIcon(getClass().getResource("Cadastros_Busca.png"));
 
 	JLabel label = new JLabel(imagem);
-	private JFrame janela;
+	
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -45,27 +47,30 @@ public class TelaCadastroCliente extends JFrame implements ActionListener {
 				JOptionPane.showMessageDialog(null, "Preencha todos os campops");
 			} else {
 				int i = Integer.parseInt(caixaIdade.getText());
-				Cliente clien = new Cliente(caixaNome.getText(), caixaEmail.getText(), caixaLogin.getText(),
-						caixaSenha.getText(), i, null);
-				Fachada fachada = Fachada.getInstance();
-				fachada.cadastarCliente(clien);
-
-				JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso");
-
-				TelaMenuInicial menuInicial = new TelaMenuInicial();
-				menuInicial.setResizable(false);
-				menuInicial.setLocationRelativeTo(null);
-				menuInicial.setVisible(true);
-				janela.dispose();
-				menuInicial.dispose();
-			}
-		} else {
+				if(i < 18){
+					JOptionPane.showMessageDialog(null, "Desculpe, você tem menos de 18, não pode se cadastrar");
+				}else{
+					Pessoa clien = new Cliente(caixaNome.getText(), caixaEmail.getText(), caixaLogin.getText(),
+							caixaSenha.getText(), i, null);
+					Fachada fachada = Fachada.getInstance();
+					fachada.cadastarCliente((Cliente)clien);
+	
+					JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso");
+	
+					TelaMenuInicial menuInicial = new TelaMenuInicial();
+					menuInicial.setResizable(false);
+					menuInicial.setLocationRelativeTo(null);
+					menuInicial.setVisible(true);
+					dispose();
+				}
+			} 
+		}else {
 			TelaC1 telaC1 = new TelaC1();
 			telaC1.setResizable(false);
 			telaC1.setLocationRelativeTo(null);
 			telaC1.setVisible(true);
-			janela.dispose();
-			telaC1.dispose();
+			dispose();
+		
 		}
 
 	}
@@ -75,16 +80,16 @@ public class TelaCadastroCliente extends JFrame implements ActionListener {
 		botaoConfirma.addActionListener(this);
 		botaoVolta.addActionListener(this);
 
-		janela = new JFrame("TerpTickets");
-		janela.setSize(500, 400);
-		janela.setVisible(true);
-		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		janela.setLocationRelativeTo(null);
-		janela.setResizable(false);
+		
+		setSize(500, 400);
+		setVisible(true);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setLocationRelativeTo(null);
+		setResizable(false);
 
 		JPanel painelPrincipal = new JPanel();
 
-		janela.add(painelPrincipal);
+		add(painelPrincipal);
 
 		painelPrincipal.setLayout(null);
 

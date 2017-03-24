@@ -25,7 +25,7 @@ public class TelaEspacoAdm extends JFrame implements ActionListener {
 	ImageIcon imagem = new ImageIcon(getClass().getResource("Espaço.png"));
 
 	JLabel label = new JLabel(imagem);
-	private JFrame janela;
+	
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -34,29 +34,29 @@ public class TelaEspacoAdm extends JFrame implements ActionListener {
 			cEven.setResizable(false);
 			cEven.setLocationRelativeTo(null);
 			cEven.setVisible(true);
-			janela.dispose();
-			cEven.dispose();
+			dispose();
+			
 		} else if (e.getSource() == botaoRemEven) {
 			TelaRemoveEven remove = new TelaRemoveEven();
 			remove.setResizable(false);
 			remove.setLocationRelativeTo(null);
 			remove.setVisible(true);
-			janela.dispose();
-			remove.dispose();
+			dispose();
+			
 		} else if (e.getSource() == botaoSRemCon) {
 			TelaRemoveConAdm remove = new TelaRemoveConAdm();
 			remove.setResizable(false);
 			remove.setLocationRelativeTo(null);
 			remove.setVisible(true);
-			janela.dispose();
-			remove.dispose();
+			dispose();
+			
 		} else {
 			TelaMenuInicial menuInicial = new TelaMenuInicial();
 			menuInicial.setResizable(false);
 			menuInicial.setLocationRelativeTo(null);
 			menuInicial.setVisible(true);
-			janela.dispose();
-			menuInicial.dispose();
+			dispose();
+			
 		}
 
 	}
@@ -68,15 +68,15 @@ public class TelaEspacoAdm extends JFrame implements ActionListener {
 		botaoSRemCon.addActionListener(this);
 		botaoSair.addActionListener(this);
 
-		janela = new JFrame("TerpTickets");
-		janela.setSize(500, 400);
-		janela.setVisible(true);
-		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		janela.setLocationRelativeTo(null);
-		janela.setResizable(false);
+		
+		setSize(500, 400);
+		setVisible(true);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setLocationRelativeTo(null);
+		setResizable(false);
 
 		JPanel painelPrincipal = new JPanel();
-		janela.add(painelPrincipal);
+		add(painelPrincipal);
 
 		painelPrincipal.setLayout(null);
 
