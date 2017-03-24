@@ -1,4 +1,4 @@
-package GUI;
+package gui;
 
 import java.util.Random;
 
@@ -8,7 +8,8 @@ import beans.Cliente;
 import beans.Evento;
 import beans.Ingresso;
 import beans.Local;
-
+import exceptions.IngInsuficienteException;
+import exceptions.NegcExceptions;
 import negocio.Fachada;
 
 public class Teste {
@@ -16,7 +17,7 @@ public class Teste {
 	private static Scanner sc1;
 	private static Scanner sc2;
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws NegcExceptions, IngInsuficienteException {
 		int termino = 1;
 		char cond = 0;
 		sc = new Scanner(System.in);

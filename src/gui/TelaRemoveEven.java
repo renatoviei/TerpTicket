@@ -1,4 +1,4 @@
-package GUI;
+package gui;
 
 import java.awt.Font;
 import java.awt.Rectangle;
@@ -13,6 +13,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import exceptions.NegcExceptions;
 import negocio.Fachada;
 
 public class TelaRemoveEven extends JFrame implements ActionListener {
@@ -23,29 +24,33 @@ public class TelaRemoveEven extends JFrame implements ActionListener {
 	private static final long serialVersionUID = 1L;
 	private JTextField caixaNomeEven = new JTextField(50);
 
+	NegcExceptions ngc = new NegcExceptions("informação inválida");
 	JButton botaoRemover = new JButton("Remover");
 	JButton botaoVolta = new JButton("Voltar");
 	ImageIcon imagem = new ImageIcon(getClass().getResource("Remover.png"));
 	JLabel label = new JLabel(imagem);
-	
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == botaoRemover) {
 			Fachada fachada = Fachada.getInstance();
 			if (fachada.existe(caixaNomeEven.getText())) {
-				fachada.removerEvento(caixaNomeEven.getText());
-				JOptionPane.showMessageDialog(null, "Evento removido com sucesso");
+				int reply = JOptionPane.showConfirmDialog(null, "Você realmente deseja remover?", "SIM",
+						JOptionPane.YES_NO_OPTION);
+				if (reply == JOptionPane.YES_OPTION) {
+					fachada.removerEvento(caixaNomeEven.getText());
+					JOptionPane.showMessageDialog(null, "Evento removido com sucesso");
+				} else {
 
-				TelaEspacoAdm espaco = new TelaEspacoAdm();
-				espaco.setResizable(false);
-				espaco.setLocationRelativeTo(null);
-				espaco.setVisible(true);
-				dispose();
-				
-			}else{
-				JOptionPane.showMessageDialog(null, "Evento não existe ou nome "
-						+ "está incorreto");
+					TelaEspacoAdm espaco = new TelaEspacoAdm();
+					espaco.setResizable(false);
+					espaco.setLocationRelativeTo(null);
+					espaco.setVisible(true);
+					dispose();
+				}
+			} else {
+				JOptionPane.showMessageDialog(null, "Evento não existe ou nome " + "está incorreto");
+
 			}
 		} else {
 			TelaEspacoAdm espaco = new TelaEspacoAdm();
@@ -53,7 +58,7 @@ public class TelaRemoveEven extends JFrame implements ActionListener {
 			espaco.setLocationRelativeTo(null);
 			espaco.setVisible(true);
 			dispose();
-			
+
 		}
 
 	}
@@ -63,7 +68,6 @@ public class TelaRemoveEven extends JFrame implements ActionListener {
 		botaoRemover.addActionListener(this);
 		botaoVolta.addActionListener(this);
 
-		
 		setSize(500, 400);
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

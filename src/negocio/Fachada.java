@@ -3,6 +3,9 @@ package negocio;
 import beans.Administrador;
 import beans.Cliente;
 import beans.Evento;
+import beans.Local;
+import exceptions.IngInsuficienteException;
+import exceptions.NegcExceptions;
 
 public class Fachada implements IFachada {
 	private IControladorAdm controladorAdm;
@@ -31,7 +34,7 @@ public class Fachada implements IFachada {
 		controladorCliente.cadastrar(cliente);
 	}
 
-	public void cadastarEvento(Evento evento) {
+	public void cadastarEvento(Evento evento)throws NegcExceptions, NumberFormatException {
 		controladorEvento.cadastrar(evento);
 	}
 
@@ -71,7 +74,7 @@ public class Fachada implements IFachada {
 		return controladorCliente.loginCliente(login, senha);
 	}
 
-	public void venderIngrClien(int quantIngressos, String busca) {
+	public void venderIngrClien(int quantIngressos, String busca) throws IngInsuficienteException {
 		controladorEvento.venderIngrClien(quantIngressos, busca);
 	}
 
@@ -87,4 +90,10 @@ public class Fachada implements IFachada {
 		controladorEvento.salvarEventos();
 	}
 
+	public String[] retornaTudo() {
+		return this.controladorEvento.retornaTudo();
+	}
+	public void atualiza(Evento even, String nome, int preco, Local local, String bandas){
+		controladorEvento.atualiza(even, nome, preco, local, bandas);
+	}
 }

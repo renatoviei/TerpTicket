@@ -1,4 +1,4 @@
-package GUI;
+package gui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,6 +20,7 @@ public class TelaEspacoAdm extends JFrame implements ActionListener {
 	JButton botaoRemEven = new JButton("Remover evento");
 
 	JButton botaoSRemCon = new JButton("Remover conta");
+	JButton botaoEditEven = new JButton("Editar evento");
 
 	JButton botaoSair = new JButton("Sair");
 	ImageIcon imagem = new ImageIcon(getClass().getResource("Espaço.png"));
@@ -49,6 +50,12 @@ public class TelaEspacoAdm extends JFrame implements ActionListener {
 			remove.setLocationRelativeTo(null);
 			remove.setVisible(true);
 			dispose();
+		} else if (e.getSource() == botaoEditEven) {
+			TelaEditEvent editEvent = new TelaEditEvent();
+			editEvent.setResizable(false);
+			editEvent.setLocationRelativeTo(null);
+			editEvent.setVisible(true);
+			dispose();
 			
 		} else {
 			TelaMenuInicial menuInicial = new TelaMenuInicial();
@@ -62,7 +69,7 @@ public class TelaEspacoAdm extends JFrame implements ActionListener {
 	}
 
 	public TelaEspacoAdm() {
-
+		botaoEditEven.addActionListener(this);
 		botaoCriarEven.addActionListener(this);
 		botaoRemEven.addActionListener(this);
 		botaoSRemCon.addActionListener(this);
@@ -76,15 +83,19 @@ public class TelaEspacoAdm extends JFrame implements ActionListener {
 		setResizable(false);
 
 		JPanel painelPrincipal = new JPanel();
-		add(painelPrincipal);
+		getContentPane().add(painelPrincipal);
 
 		painelPrincipal.setLayout(null);
 
 		label.setBounds(-0, -20, 500, 400);
+		
+		botaoEditEven.setBounds(150, 98, 200, 20);
 		botaoCriarEven.setBounds(150, 50, 200, 20);
 		botaoRemEven.setBounds(150, 140, 200, 20);
-		botaoSRemCon.setBounds(150, 215, 200, 20);
+		botaoSRemCon.setBounds(150, 184, 200, 20);
 		botaoSair.setBounds(150, 300, 200, 20);
+		
+		painelPrincipal.add(botaoEditEven);
 		painelPrincipal.add(botaoCriarEven);
 		painelPrincipal.add(botaoRemEven);
 		painelPrincipal.add(botaoSRemCon);

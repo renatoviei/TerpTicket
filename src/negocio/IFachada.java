@@ -3,6 +3,8 @@ package negocio;
 import beans.Administrador;
 import beans.Cliente;
 import beans.Evento;
+import exceptions.IngInsuficienteException;
+import exceptions.NegcExceptions;
 
 public interface IFachada {
 
@@ -10,7 +12,7 @@ public interface IFachada {
 
 	abstract void cadastarCliente(Cliente cliente);
 
-	abstract void cadastarEvento(Evento evento);
+	abstract void cadastarEvento(Evento evento)throws NegcExceptions, NumberFormatException;
 
 	abstract Administrador buscarAdm(String login);
 
@@ -28,12 +30,13 @@ public interface IFachada {
 
 	abstract boolean loginCliente(String login, String senha);
 
-	abstract void venderIngrClien(int quantIngressos, String busca);
-	
+	abstract void venderIngrClien(int quantIngressos, String busca)throws IngInsuficienteException;
+
 	abstract void salvarAdm();
-	
+
 	abstract void salvarCliente();
-	
+
 	abstract void salvarEventos();
 
+	public String[] retornaTudo();
 }

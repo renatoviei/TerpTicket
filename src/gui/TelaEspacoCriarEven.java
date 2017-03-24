@@ -1,4 +1,4 @@
-package GUI;
+package gui;
 
 import java.awt.Font;
 import java.awt.Rectangle;
@@ -17,6 +17,7 @@ import javax.swing.JTextField;
 import beans.Evento;
 import beans.Ingresso;
 import beans.Local;
+import exceptions.NegcExceptions;
 import negocio.Fachada;
 
 public class TelaEspacoCriarEven extends JFrame implements ActionListener {
@@ -51,6 +52,7 @@ public class TelaEspacoCriarEven extends JFrame implements ActionListener {
 					|| caixaCapacidade.getText().equals("") || caixaBandas.getText().equals("")) {
 				JOptionPane.showMessageDialog(null, "Preencha todos os campops");
 			} else {
+				try{
 				int i = Integer.parseInt(caixaCapacidade.getText());
 				int k = Integer.parseInt(caixaPreco.getText());
 				Local local = new Local(caixaCasa.getText(), caixaEndereco.getText(), caixaDataHora.getText(), i);
@@ -67,7 +69,12 @@ public class TelaEspacoCriarEven extends JFrame implements ActionListener {
 				espaco.setLocationRelativeTo(null);
 				espaco.setVisible(true);
 				dispose();
-				
+				}catch (NumberFormatException ngc){
+					JOptionPane.showMessageDialog(null, "Você deve estar digitando, uma letra em algum campo numerico, tente novamente!");
+				} catch (NegcExceptions e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		} else {
 			TelaEspacoAdm espaco = new TelaEspacoAdm();

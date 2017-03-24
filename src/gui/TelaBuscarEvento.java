@@ -1,10 +1,11 @@
-package GUI;
+package gui;
 
 import java.awt.Font;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -14,7 +15,12 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import beans.Evento;
+import exceptions.IngInsuficienteException;
 import negocio.Fachada;
+import javax.swing.JList;
+import javax.swing.JScrollPane;
+import javax.swing.border.BevelBorder;
+import javax.swing.AbstractListModel;
 
 public class TelaBuscarEvento extends JFrame implements ActionListener {
 
@@ -39,7 +45,10 @@ public class TelaBuscarEvento extends JFrame implements ActionListener {
 	ImageIcon imagem = new ImageIcon(getClass().getResource("Cadastros_Busca.png"));
 
 	JLabel label = new JLabel(imagem);
-	
+	// JList lista;
+	DefaultListModel modelo = new DefaultListModel();
+	private final JList list = new JList();
+	private final JScrollPane scrollPane = new JScrollPane();
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -93,54 +102,55 @@ public class TelaBuscarEvento extends JFrame implements ActionListener {
 
 				int i = Integer.parseInt(caixaQuant.getText());
 				if (i <= fachada.buscarEvento(caixaNome.getText()).getLocal().getCapacidade()) {
-					fachada.venderIngrClien(i, caixaNome.getText());
-
-					Evento even = fachada.buscarEvento(caixaBusca.getText());
-
-					caixaNome.setText(even.getNome());
-					caixaNome.setEditable(false);
-
-					caixaPreco.setText(Integer.toString(even.getPreco()));
-					caixaPreco.setEditable(false);
-
-					caixaCasa.setText(even.getLocal().getCasaDeShow());
-					caixaCasa.setEditable(false);
-
-					caixaEndereco.setText(even.getLocal().getEndereco());
-					caixaEndereco.setEditable(false);
-
-					caixaDataHora.setText(even.getLocal().getDataHorario());
-					caixaDataHora.setEditable(false);
-
-					caixaCapacidade.setText(Integer.toString(even.getLocal().getCapacidade()));
-					caixaCapacidade.setEditable(false);
-
-					caixaBandas.setText(even.getBandas());
-					caixaBandas.setEditable(false);
-
-					caixaCodigo.setText(String.valueOf(even.getIngressos().getCodigo()));
-					caixaCodigo.setEditable(false);
-
-					System.out.println(caixaNome.getText());
-					System.out.println(caixaCasa.getText());
-					System.out.println(caixaEndereco.getText());
-					System.out.println(caixaDataHora.getText());
-					System.out.println(caixaCapacidade.getText());
-					System.out.println(caixaBandas.getText());
-					System.out.println(caixaCodigo.getText());
-
-					JOptionPane.showMessageDialog(null, "Ingressos comprados!");
-
-					TelaEspacoCliente espaco = new TelaEspacoCliente();
-					espaco.setResizable(false);
-					espaco.setLocationRelativeTo(null);
-					espaco.setVisible(true);
-					dispose();
 					
-				} else {
-					JOptionPane.showMessageDialog(null, "Ingressos insuficientes, " + "digite uma quantidade menor!");
-				}
+					try {
+						Evento even = fachada.buscarEvento(caixaBusca.getText());
+						fachada.venderIngrClien(i, caixaNome.getText());
+						
+						caixaNome.setText(even.getNome());
+						caixaNome.setEditable(false);
 
+						caixaPreco.setText(Integer.toString(even.getPreco()));
+						caixaPreco.setEditable(false);
+
+						caixaCasa.setText(even.getLocal().getCasaDeShow());
+						caixaCasa.setEditable(false);
+
+						caixaEndereco.setText(even.getLocal().getEndereco());
+						caixaEndereco.setEditable(false);
+
+						caixaDataHora.setText(even.getLocal().getDataHorario());
+						caixaDataHora.setEditable(false);
+
+						caixaCapacidade.setText(Integer.toString(even.getLocal().getCapacidade()));
+						caixaCapacidade.setEditable(false);
+
+						caixaBandas.setText(even.getBandas());
+						caixaBandas.setEditable(false);
+
+						caixaCodigo.setText(String.valueOf(even.getIngressos().getCodigo()));
+						caixaCodigo.setEditable(false);
+
+						System.out.println(caixaNome.getText());
+						System.out.println(caixaCasa.getText());
+						System.out.println(caixaEndereco.getText());
+						System.out.println(caixaDataHora.getText());
+						System.out.println(caixaCapacidade.getText());
+						System.out.println(caixaBandas.getText());
+						System.out.println(caixaCodigo.getText());
+
+						JOptionPane.showMessageDialog(null, "Ingressos comprados!");
+
+						TelaEspacoCliente espaco = new TelaEspacoCliente();
+						espaco.setResizable(false);
+						espaco.setLocationRelativeTo(null);
+						espaco.setVisible(true);
+						dispose();
+					}  catch (IngInsuficienteException iee) {
+						JOptionPane.showMessageDialog(null, "Ingressos insuficientes");
+						
+					}
+				}
 			} else {
 				JOptionPane.showMessageDialog(null, "Ingressos egostados!");
 				TelaEspacoCliente espaco = new TelaEspacoCliente();
@@ -148,7 +158,7 @@ public class TelaBuscarEvento extends JFrame implements ActionListener {
 				espaco.setLocationRelativeTo(null);
 				espaco.setVisible(true);
 				dispose();
-				
+
 			}
 
 		} else {
@@ -158,7 +168,7 @@ public class TelaBuscarEvento extends JFrame implements ActionListener {
 			espaco.setLocationRelativeTo(null);
 			espaco.setVisible(true);
 			dispose();
-			
+
 		}
 
 	}
@@ -169,7 +179,6 @@ public class TelaBuscarEvento extends JFrame implements ActionListener {
 		botaoVolta.addActionListener(this);
 		botaoComprar.addActionListener(this);
 
-		
 		setSize(500, 400);
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -178,11 +187,27 @@ public class TelaBuscarEvento extends JFrame implements ActionListener {
 
 		JPanel painelPrincipal = new JPanel();
 
-		add(painelPrincipal);
+		getContentPane().add(painelPrincipal);
 
 		painelPrincipal.setLayout(null);
 
 		Font grande = new Font("Serif", Font.BOLD, 13);
+		list.setModel(new AbstractListModel() {
+			Fachada fachada = Fachada.getInstance();
+			String[] listaEventos = fachada.retornaTudo();
+
+			public int getSize() {
+				return listaEventos.length;
+			}
+
+			public Object getElementAt(int index) {
+				return listaEventos[index];
+			}
+		});
+		list.setBounds(300, 41, 184, 189);
+		painelPrincipal.add(list);
+		list.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		list.setFont(new Font("Tahoma", Font.BOLD, 13));
 
 		JLabel busca = new JLabel("Busque o evento: ");
 		busca.setFont(grande);
@@ -191,6 +216,9 @@ public class TelaBuscarEvento extends JFrame implements ActionListener {
 
 		caixaBusca.setBounds(new Rectangle(120, 13, 150, 17));
 		painelPrincipal.add(caixaBusca);
+		scrollPane.setBounds(444, 93, -111, 117);
+
+		painelPrincipal.add(scrollPane);
 
 		JLabel nome = new JLabel("Nome do evento: ");
 		nome.setFont(grande);

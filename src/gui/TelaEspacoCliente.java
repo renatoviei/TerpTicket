@@ -1,4 +1,4 @@
-package GUI;
+package gui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,6 +20,7 @@ public class TelaEspacoCliente extends JFrame implements ActionListener {
 	JButton botaoRemConta = new JButton("Remover conta");
 
 	JButton botaoSair = new JButton("Sair");
+	
 	ImageIcon imagem = new ImageIcon(getClass().getResource("Espaço.png"));
 
 	JLabel label = new JLabel(imagem);
@@ -41,6 +42,7 @@ public class TelaEspacoCliente extends JFrame implements ActionListener {
 			remove.setLocationRelativeTo(null);
 			remove.setVisible(true);
 			dispose();
+			
 		
 
 		} else {
@@ -59,7 +61,6 @@ public class TelaEspacoCliente extends JFrame implements ActionListener {
 		botaoBuscarEven.addActionListener(this);
 		botaoRemConta.addActionListener(this);
 		botaoSair.addActionListener(this);
-
 		
 		setSize(500, 400);
 		setVisible(true);
@@ -68,7 +69,7 @@ public class TelaEspacoCliente extends JFrame implements ActionListener {
 		setResizable(false);
 
 		JPanel painelPrincipal = new JPanel();
-		add(painelPrincipal);
+		getContentPane().add(painelPrincipal);
 
 		painelPrincipal.setLayout(null);
 

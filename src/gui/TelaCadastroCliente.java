@@ -1,4 +1,4 @@
-package GUI;
+package gui;
 
 import java.awt.Font;
 import java.awt.Rectangle;
@@ -14,11 +14,11 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import beans.Administrador;
+import beans.Cliente;
 import beans.Pessoa;
 import negocio.Fachada;
 
-public class TelaCadastroAdm extends JFrame implements ActionListener {
+public class TelaCadastroCliente extends JFrame implements ActionListener {
 
 	/**
 		 * 
@@ -38,44 +38,49 @@ public class TelaCadastroAdm extends JFrame implements ActionListener {
 	JLabel label = new JLabel(imagem);
 	
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == botaoConfirma) {
+
 			if (caixaNome.getText().equals("") || caixaIdade.getText().equals("") || caixaEmail.getText().equals("")
 					|| caixaLogin.getText().equals("") || caixaSenha.getText().equals("")) {
-				JOptionPane.showMessageDialog(null, "Preencha todos os campos");
+				JOptionPane.showMessageDialog(null, "Preencha todos os campops");
 			} else {
 				int i = Integer.parseInt(caixaIdade.getText());
 				if(i < 18){
 					JOptionPane.showMessageDialog(null, "Desculpe, você tem menos de 18, não pode se cadastrar");
 				}else{
-				Pessoa adm = new Administrador(caixaNome.getText(), caixaEmail.getText(), caixaLogin.getText(),
-						caixaSenha.getText(), i);
-				Fachada fachada = Fachada.getInstance();
-				fachada.cadastarAdm((Administrador)adm);
-
-				JOptionPane.showMessageDialog(null, "Administrador cadastrado com sucesso");
-
-				TelaMenuInicial menuInicial = new TelaMenuInicial();
-				menuInicial.setResizable(false);
-				menuInicial.setLocationRelativeTo(null);
-				menuInicial.setVisible(true);
-				dispose();
-			
+					try{
+					Pessoa clien = new Cliente(caixaNome.getText(), caixaEmail.getText(), caixaLogin.getText(),
+							caixaSenha.getText(), i, null);
+					Fachada fachada = Fachada.getInstance();
+					fachada.cadastarCliente((Cliente)clien);
+	
+					JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso");
+	
+					TelaMenuInicial menuInicial = new TelaMenuInicial();
+					menuInicial.setResizable(false);
+					menuInicial.setLocationRelativeTo(null);
+					menuInicial.setVisible(true);
+					dispose();
+					}catch(NumberFormatException nfe){
+						JOptionPane.showMessageDialog(null, "Digite um numero no campo de idade!");
+					}
 				}
-			}
-		} else {
+			} 
+		}else {
 			TelaC1 telaC1 = new TelaC1();
 			telaC1.setResizable(false);
 			telaC1.setLocationRelativeTo(null);
 			telaC1.setVisible(true);
 			dispose();
-			
+		
 		}
 
 	}
 
-	public TelaCadastroAdm() {
+	public TelaCadastroCliente() {
 
 		botaoConfirma.addActionListener(this);
 		botaoVolta.addActionListener(this);
@@ -98,6 +103,7 @@ public class TelaCadastroAdm extends JFrame implements ActionListener {
 		JLabel nome = new JLabel("Digite seu nome: ");
 		nome.setFont(grande);
 		nome.setBounds(new Rectangle(20, 50, 120, 17));
+
 		painelPrincipal.add(nome);
 
 		caixaNome.setBounds(new Rectangle(150, 50, 120, 17));
@@ -132,10 +138,10 @@ public class TelaCadastroAdm extends JFrame implements ActionListener {
 		senha.setBounds(new Rectangle(20, 250, 120, 17));
 		painelPrincipal.add(senha);
 
-		label.setBounds(0, 0, 500, 400);
 		caixaSenha.setBounds(new Rectangle(150, 250, 120, 17));
 		painelPrincipal.add(caixaSenha);
 
+		label.setBounds(0, 0, 500, 400);
 		botaoConfirma.setBounds(150, 300, 100, 20);
 		botaoVolta.setBounds(250, 300, 80, 20);
 
@@ -145,7 +151,7 @@ public class TelaCadastroAdm extends JFrame implements ActionListener {
 	}
 
 	public static void main(String[] args) {
-		new TelaCadastroAdm();
+		new TelaCadastroCliente();
 	}
 
 }

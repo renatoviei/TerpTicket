@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import beans.Evento;
+import beans.Local;
 
 public class RepositorioEventos implements IRepositorioEventos, Serializable {
 	/**
@@ -140,6 +141,25 @@ public class RepositorioEventos implements IRepositorioEventos, Serializable {
 		}
 
 		return existe;
+	}
+	
+	public String[] retornaTudo() {
+		String[] lista = new String[eventos.size() + 1];
+		for (int i = 0; i < eventos.size(); i++) {
+			lista[i] = eventos.get(i).getNome();
+		}
+		return lista;
+	}
+	
+	public void atualiza(Evento even, String nome, int preco, Local local, String bandas) {
+		if (existe(nome)) {
+			even.setNome(nome);
+			even.setPreco(preco);
+			even.setLocal(local);
+			even.setBandas(bandas);
+		}
+
+		this.salvarEventos();
 	}
 
 }

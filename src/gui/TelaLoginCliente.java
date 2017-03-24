@@ -1,4 +1,4 @@
-package GUI;
+package gui;
 
 import java.awt.Font;
 import java.awt.Rectangle;
@@ -14,10 +14,9 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import beans.Administrador;
 import negocio.Fachada;
 
-public class TelaRemoveConAdm extends JFrame implements ActionListener {
+public class TelaLoginCliente extends JFrame implements ActionListener {
 
 	/**
 		 * 
@@ -25,48 +24,42 @@ public class TelaRemoveConAdm extends JFrame implements ActionListener {
 	private static final long serialVersionUID = 1L;
 	private JTextField caixaLogin = new JTextField(50);
 	private JPasswordField caixaSenha = new JPasswordField(50);
-
-	JButton botaoRemover = new JButton("Remover");
+	JButton botaoEntra = new JButton("Entrar");
 	JButton botaoVolta = new JButton("Voltar");
-	ImageIcon imagem = new ImageIcon(getClass().getResource("Remover.png"));
+
+	ImageIcon imagem = new ImageIcon(getClass().getResource("Logins.png"));
 	JLabel label = new JLabel(imagem);
 	
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == botaoRemover) {
+		if (e.getSource() == botaoEntra) {
 			Fachada fachada = Fachada.getInstance();
-			Administrador adm = null;
-			adm = fachada.buscarAdm(caixaLogin.getText());
-
-			if (caixaSenha.getText().equals(adm.getSenha())) {
-
-				fachada.removerAdm(caixaLogin.getText());
-				JOptionPane.showMessageDialog(null, "Conta removida com sucesso");
-
-				TelaMenuInicial menuInicial = new TelaMenuInicial();
-				menuInicial.setResizable(false);
-				menuInicial.setLocationRelativeTo(null);
-				menuInicial.setVisible(true);
+			if (fachada.loginCliente(caixaLogin.getText(), caixaSenha.getText()) == true) {
+				TelaEspacoCliente espaco = new TelaEspacoCliente();
+				espaco.setResizable(false);
+				espaco.setLocationRelativeTo(null);
+				espaco.setVisible(true);
 				dispose();
 				
-			}else{
-				JOptionPane.showMessageDialog(null, "Login ou senha estão incorretos");
+			} else {
+				JOptionPane.showMessageDialog(null, "LOGIN NÃO REALIZADO. CONTA NAO EXISTE!");
 			}
+
 		} else {
-			TelaEspacoAdm espaco = new TelaEspacoAdm();
-			espaco.setResizable(false);
-			espaco.setLocationRelativeTo(null);
-			espaco.setVisible(true);
+			TelaL1 telaL1 = new TelaL1();
+			telaL1.setResizable(false);
+			telaL1.setLocationRelativeTo(null);
+			telaL1.setVisible(true);
 			dispose();
 			
 		}
 
 	}
 
-	public TelaRemoveConAdm() {
+	public TelaLoginCliente() {
 
-		botaoRemover.addActionListener(this);
+		botaoEntra.addActionListener(this);
 		botaoVolta.addActionListener(this);
 
 		
@@ -100,18 +93,16 @@ public class TelaRemoveConAdm extends JFrame implements ActionListener {
 		caixaSenha.setBounds(new Rectangle(150, 100, 120, 17));
 		painelPrincipal.add(caixaSenha);
 
-		label.setBounds(-5, -20, 500, 400);
-		botaoRemover.setBounds(150, 300, 100, 20);
+		label.setBounds(0, -13, 500, 400);
+		botaoEntra.setBounds(150, 300, 100, 20);
 		botaoVolta.setBounds(250, 300, 80, 20);
-
-		painelPrincipal.add(botaoRemover);
+		painelPrincipal.add(botaoEntra);
 		painelPrincipal.add(botaoVolta);
 		painelPrincipal.add(label);
-
 	}
 
 	public static void main(String[] args) {
-		new TelaRemoveConAdm();
+		new TelaLoginCliente();
 	}
 
 }
